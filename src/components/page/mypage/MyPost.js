@@ -12,7 +12,7 @@ import { doc, getDoc } from 'firebase/firestore';
 
 // import style
 import '../../../style/style.css';
-import './mypage.scss';
+import '../../../style/mypage.scss';
 import { useEffect, useState } from 'react';
 
 

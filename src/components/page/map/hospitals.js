@@ -2,11 +2,11 @@
  * ./src/components/page/map.js
  */
 
-import "./map.scss";
+import "../../../style/map.scss";
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
-import { shelters, hospitals } from "./data";
+import { shelters, hospitals } from "../../../data/data";
 
 import '../../../style/style.css';
 

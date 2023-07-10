@@ -12,7 +12,7 @@ import Slider from 'react-slick';
 import Card from '../miss/card';
 
 // import style
-import "./SearchPage.scss";
+import "../../../style/SearchPage.scss";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../../style/carouselDots.css';

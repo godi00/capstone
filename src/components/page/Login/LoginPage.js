@@ -3,7 +3,7 @@
  * 로그인 페이지
  */
 
-import "./LoginPage.scss";
+import "../../../style/LoginPage.scss";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { db } from '../../../firebase';

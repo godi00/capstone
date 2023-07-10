@@ -12,7 +12,7 @@ import { PieChart } from "../miss/PieChart";
 import { BarChart } from "../miss/BarChart";
 
 // import style
-import "./FindPage.scss";
+import "../../../style/FindPage.scss";
 
 export const FindPage = () => {
     const navigate = useNavigate();

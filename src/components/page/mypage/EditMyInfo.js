@@ -16,7 +16,7 @@ import { updateDoc, doc } from 'firebase/firestore';
 
 // import style
 import '../../../style/style.css';
-import './mypage.scss';
+import '../../../style/mypage.scss';
 
 const EditMyInfo = () => {
     const [email, setEmail] = useState(localStorage.getItem('Email')); // email

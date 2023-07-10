@@ -3,7 +3,7 @@
  * 실종 등록하기
  */
 //import "./UploadPage.scss";
-import userInputs from "../miss/formData.js";
+import userInputs from "../../../data/formData.js";
 import { React, useState, useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
@@ -11,7 +11,7 @@ import { addDoc, collection, updateDoc, doc, getDoc } from "@firebase/firestore"
 import { db, storage } from "../../../firebase.js";
 import { getAuth } from "firebase/auth";
 import { ref, uploadBytesResumable, uploadBytes, getDownloadURL } from "firebase/storage";
-import "../miss/UploadPage.scss";
+import "../../../style/UploadPage.scss";
 //import Dropzone from 'react-dropzone'
 
 

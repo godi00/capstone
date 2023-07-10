@@ -13,7 +13,7 @@ import { signOut, deleteUser } from 'firebase/auth';
 import { getDocs, collection, query, where, deleteDoc } from 'firebase/firestore';
 
 // import style
-import "./mypage.scss";
+import "../../../style/mypage.scss";
 
 export const MyInformation = () => {
     const [userInfo, setUserInfo] = useState();

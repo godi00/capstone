@@ -2,8 +2,8 @@
  * ./src/components/page/miss/UploadPage.js
  * 실종 등록하기
  */
-import "./UploadPage.scss";
-import userInputs from "./formData.js";
+import "../../../style/UploadPage.scss";
+import userInputs from "../../../data/formData.js";
 import { React, useState, useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";

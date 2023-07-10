@@ -1,10 +1,10 @@
-import "./map.scss";
+import "../../../style/map.scss";
 import { NavLink } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import { db } from "../../../firebase";
-import areas from "./seoulData.js"
+import areas from "../../../data/seoulData.js"
 import '../../../style/style.css';
 
 

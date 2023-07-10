@@ -8,7 +8,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // import style
-import './explain.scss';
+import '../../../style/explain.scss';
 
 const Explain =()=>{
   return(

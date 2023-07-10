@@ -10,7 +10,7 @@ import { db } from "../../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import '../../../style/style.css';
-import "../miss/moreInfo.scss";
+import "../../../style/moreInfo.scss";
 
 const FindMoreinfoPage = () => {
     const [findPost, setFindPost] = useState([]);

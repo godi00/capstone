@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 // import style
 import styled from 'styled-components';
-import './carousel.scss';
+import '../../../style/carousel.scss';
 
 function Card(props) {
   useEffect(() => {
