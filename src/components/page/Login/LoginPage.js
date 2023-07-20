@@ -27,6 +27,7 @@ const LoginPage = () => {
             return signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
                 //const user = userCredential.user;
                 localStorage.setItem('Uid', userCredential.user.uid);
+                alert('로그인 성공!');
                 navigate("/");
             })
             .catch((error) => {
@@ -68,7 +69,10 @@ const LoginPage = () => {
             });
         })
         .then(res => {
-            navigate("/");            
+            alert('로그인 성공!');
+        })
+        .then(res => {
+            navigate("/");
         })
         .catch(error => {
             console.error(error);
@@ -103,8 +107,7 @@ const LoginPage = () => {
             localStorage.setItem('PhoneNumber', docs.PhoneNumber);
             localStorage.setItem('Address', docs.Address.address);
             localStorage.setItem('ExtraAddress', docs.Address.extraAddress);
-        })
-        alert('로그인 성공!');
+        });
     }
 
     return(
