@@ -25,7 +25,7 @@ import HospitalMapPage from "./map/hospitals";
 import SeoulMapPage from "./map/seoulMap";
 import { UploadPost } from "./forum/UploadPost";
 import {PostPage} from "./forum/PostPage";
-import Admin from "./admin/Admin";
+import AdminPage from "./admin/AdminPage";
 
 // import style
 import '../../style/style.css';
@@ -196,7 +196,7 @@ export const MyUploadingPost = () => (
 export const AdminBoard = () => (
   <PageTemplate>
     <section className="admin-board">
-      <Admin />
+      <AdminPage />
     </section>
   </PageTemplate>
 )
