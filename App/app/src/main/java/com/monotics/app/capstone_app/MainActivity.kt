@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.monotics.app.capstone_app.data.ProfileDataViewModel
 import com.monotics.app.capstone_app.databinding.ActivityMainBinding
 import com.monotics.app.capstone_app.databinding.NavheaderBinding
@@ -81,7 +82,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val total = querySnapshot?.count()
             binding.findcomplete.text = total.toString()
         }
-
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.e("token",task.result.toString())
+            }
+        }
 //        맵실현은 되는데 에뮬레이터에서는 안됨
 //        val mapView = MapView(this)
 //        val mapViewContainer = map_View

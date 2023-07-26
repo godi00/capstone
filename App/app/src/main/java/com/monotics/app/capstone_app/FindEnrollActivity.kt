@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.Constants
+import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.monotics.app.capstone_app.databinding.ActivityFindenrollBinding
@@ -161,6 +164,7 @@ class FindEnrollActivity :AppCompatActivity(){
                         db.collection("Finding").document(documentReference.id).update("id",documentReference.id)
                         Toast.makeText(this,"게시물을 등록했습니다", Toast.LENGTH_SHORT).show()
                     }
+                findMatchingData(enrollinf)
             }
             super.onBackPressed()
 
@@ -231,5 +235,27 @@ class FindEnrollActivity :AppCompatActivity(){
         // 프로그래스 바 업데이트
         progressBar.progress = progress
     }
+    // 등록한 데이터와 50% 이상 일치하는 데이터의 id를 가져오기 위한 함수
+    private fun findMatchingData(enrollData: HashMap<String, Any?>) {
+        Log.e("kimshin", enrollData.toString())
+        // 등록한 데이터의 필요요소들을 배열로 가져옴
+        val interests = enrollData["farColor1"]
+
+        //요소들이 일치하는 항목의 id를 가져옴
+        val query = db.collection("Missing")
+            .whereEqualTo("farColor1", interests)
+        query.get().addOnSuccessListener { querySnapshot: QuerySnapshot? ->
+            if (querySnapshot != null) {
+                for (document in querySnapshot.documents) {
+                    // 등록한 데이터와 50% 이상 일치하는 데이터의 id 출력
+                    Log.e("kimshin", document["uid"] as String)
+                }
+            } else {
+                Log.e("kimshin", "데이터 없습니다.")
+            }
+        }
+        
+    }
+
 
 }

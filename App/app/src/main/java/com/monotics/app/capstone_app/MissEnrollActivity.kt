@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_missenroll.recyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class MissEnrollActivity: AppCompatActivity() {
     val binding by lazy { ActivityMissenrollBinding.inflate(layoutInflater) }
@@ -173,6 +175,8 @@ class MissEnrollActivity: AppCompatActivity() {
                         db.collection("Missing").document(documentReference.id).update("id",documentReference.id)
                         Toast.makeText(this,"게시물을 등록했습니다", Toast.LENGTH_SHORT).show()
                     }
+
+
             }
 
             super.onBackPressed()
