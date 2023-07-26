@@ -6,8 +6,8 @@
 import "../../../style/LoginPage.scss";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { db } from '../../../firebase';
-import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, GoogleAuthProvider } from "firebase/auth";
+import { db, auth } from '../../../firebase';
+import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence, GoogleAuthProvider } from "firebase/auth";
 import { getDocs, collection, query, where, setDoc, doc } from 'firebase/firestore';
 import { GoogleLogin } from "./GoogleLogin";
 
@@ -17,7 +17,6 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
 
-    const auth = getAuth();
     const navigate = useNavigate();
 
     const LoginHandler = e => {
@@ -25,7 +24,6 @@ const LoginPage = () => {
 
         setPersistence(auth, browserSessionPersistence).then(() => {
             return signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-                //const user = userCredential.user;
                 localStorage.setItem('Uid', userCredential.user.uid);
                 alert('로그인 성공!');
                 navigate("/");

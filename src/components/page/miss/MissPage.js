@@ -6,7 +6,7 @@
 // import components
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { auth } from "../../../firebase";
 import Carousel  from "./carousel";
 import { PieChart } from "./PieChart";
 import { BarChart } from "./BarChart";
@@ -16,7 +16,6 @@ import "../../../style/MissPage.scss";
 
 export const MissPage = () => {
     const navigate = useNavigate();
-    const auth = getAuth();
     
     const toUpload = () => {
         if(auth.currentUser == null){

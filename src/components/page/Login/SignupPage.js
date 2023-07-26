@@ -6,9 +6,9 @@
 import "../../../style/LoginPage.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { db, auth } from "../../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from 'firebase/firestore';
 import Post from './Post';
 
 const SingupPage = () => {
@@ -22,11 +22,7 @@ const SingupPage = () => {
         extraAddress: '',
     });
 
-    var currUser;
-
     const [openPopup, setOpenPopup] = useState(false);
-
-    const db = getFirestore();
 
     const handleInput = (e) => {
         setFullAddress({
@@ -41,14 +37,11 @@ const SingupPage = () => {
 
     const navigate = useNavigate();
 
-    const LoginHandler = e =>{
+    const LoginHandler = e => {
         e.preventDefault();
 
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            //const user = userCredential.user;
-            // console.log(userCredential);
-            // currUser = userCredential.user.auth.currentUser.uid;
             console.log(userCredential.user.uid);
             signUp(userCredential.user.uid);
         })

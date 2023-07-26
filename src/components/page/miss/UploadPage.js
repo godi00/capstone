@@ -8,12 +8,9 @@ import { React, useState, useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
 import { addDoc, collection, doc, updateDoc, getDoc } from "@firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { db, storage } from "../../../firebase.js";
+import { db, storage, auth } from "../../../firebase.js";
 import { ref, uploadBytesResumable, uploadBytes, getDownloadURL } from "firebase/storage";
 //import Dropzone from 'react-dropzone'
-
-
 
 const UploadPage = () => {
     const [data, setData] = useState({});
@@ -22,7 +19,6 @@ const UploadPage = () => {
     const [address, setAddress] = useState("");
     const [popup, setPopup] = useState(false);
 
-    const auth = getAuth();
     const Navigate = useNavigate();
     var submit = true;
     //var img = 1;

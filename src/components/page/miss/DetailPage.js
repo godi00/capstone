@@ -9,8 +9,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 
 // import about firebase
-import { db } from '../../../firebase';
-import { getAuth } from 'firebase/auth';
+import { db, auth } from '../../../firebase';
 import { getDocs, collection, query, orderBy, updateDoc, doc } from 'firebase/firestore';
 
 // import style
@@ -22,7 +21,7 @@ import '../../../style/carouselDots.css';
 export const DetailPage = (props) => {
     const [profiles, setProfiles] = useState([]); // 가져올 게시글 내용
 
-    const currUser = getAuth().currentUser; // 현재 로그인한 유저 정보
+    const currUser = auth.currentUser; // 현재 로그인한 유저 정보
 
     let { id } = useParams();
     const no = id;

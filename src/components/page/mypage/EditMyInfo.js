@@ -10,8 +10,7 @@ import { MainMenu } from "../../menu/Menu";
 import Post from '../Login/Post';
 
 // import about firebase
-import { db } from '../../../firebase';
-import { getAuth } from 'firebase/auth';
+import { db, auth } from '../../../firebase';
 import { updateDoc, doc } from 'firebase/firestore';
 
 // import style
@@ -28,7 +27,6 @@ const EditMyInfo = () => {
     }); // address
     const [openPopup, setOpenPopup] = useState(false); // postcode popup
 
-    const auth = getAuth(); // 현재 로그인한 사용자 정보
     const navigate = useNavigate();
 
     const handleComplete = (data) => { // 우편번호 팝업 상태 관리

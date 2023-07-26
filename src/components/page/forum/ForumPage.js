@@ -9,8 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { getDocs, collection, query, orderBy } from "firebase/firestore";
 import { db } from "../../../firebase";
-import styled from "styled-components";
-import "./ForumPage.scss";
+import "../../../style/ForumPage.scss";
 
 export const ForumPage = () => {
     const [posting, setPosting] = useState([]);

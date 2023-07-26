@@ -4,9 +4,8 @@
  */
 
 import React, {useState, useEffect} from "react";
-import { getAuth } from "firebase/auth";
 import { getDocs, collection, query, orderBy } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db, auth } from "../../../firebase";
 
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -17,7 +16,6 @@ const MoreinfoPage = () => {
     const [missPost, setMissPost] = useState([]);
 
     const navigate = useNavigate();
-    const auth = getAuth();
     
     const toUpload = () => {
         if(auth.currentUser == null) {

@@ -5,10 +5,8 @@
 // import
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { app } from '../firebase';    
-
-const auth = getAuth(); // 현재 사용자 인증 정보 가져오기
+import { auth } from '../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 // Header
 const Header = () => {

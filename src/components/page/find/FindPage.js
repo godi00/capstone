@@ -6,7 +6,7 @@
 // import components
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { auth } from "../../../firebase";
 import Carousel from "../miss/carousel";
 import { PieChart } from "../miss/PieChart";
 import { BarChart } from "../miss/BarChart";
@@ -16,7 +16,6 @@ import "../../../style/FindPage.scss";
 
 export const FindPage = () => {
     const navigate = useNavigate();
-    const auth = getAuth();
 
     const toUpload = () => {
         navigate(`/find/upload`);  // 업로드 페이지로 이동

@@ -3,7 +3,7 @@
  * 다음 우편번호 api
  */
 
-import { useState, useEffect } from "react";
+// import components
 import DaumPostcode from 'react-daum-postcode';
 
 const Post = (props) => {    
