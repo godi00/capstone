@@ -11,15 +11,11 @@ import '../../style/style.css';
 
 // 메뉴 클릭 시 스타일 변경
 const activeStyle = {
-  //color: '#40643b',
   fontWeight: '750',
   textDecorationLine: 'underline',
   textUnderlinePosition : 'under',
   textDecorationThickness: '2.5px',
   textDecorationColor: '#69a65f',
-
-  //border: '#69a65f'
-  //background: "white"
 };
 
 // 상위 카테고리 메뉴
@@ -34,15 +30,3 @@ export const MainMenu = () => {
     </nav>
   )
 };
-
-// // 마이페이지 메뉴
-// export const MyMenu = () => {
-//   return (
-//     <nav className='my-menu'>
-//       <br/>
-//       <li><NavLink to='/mypage'>INFORMATION</NavLink></li>
-//       <li><NavLink to='/mypage/post'>POST</NavLink></li>
-//       <br/>
-//     </nav>
-//   )
-// };

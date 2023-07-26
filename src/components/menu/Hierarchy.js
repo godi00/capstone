@@ -12,7 +12,7 @@ import {
   FindBoard, FindTimeDetailBoard,
   Post, FindMoreInfo,
   HospitalMap, SeoulMap, Search, Login, Signup, Upload, MoreInfo, FindUpload,
-  Forum, UploadPostPage, Notfound
+  Forum, UploadPostPage, Notfound, AdminBoard
   } from "../page/Pages";
 import EditMyInfo from '../page/mypage/EditMyInfo';
 
@@ -63,6 +63,9 @@ const Hierarchy = () => (
       <Route path='/mypage/edit' element={<EditMyInfo />}/>
       <Route path='/mypage/information' element={<MyPersonalInfo />} />
       <Route path='/mypage/post' element={<MyUploadingPost />} />
+
+      {/* 관리자 페이지 */}
+      <Route path="/admin/*" element={<AdminBoard />} />
 
       {/* 오류 페이지 */}
       <Route path="*" element={<Notfound />} />

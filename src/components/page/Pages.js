@@ -25,6 +25,7 @@ import HospitalMapPage from "./map/hospitals";
 import SeoulMapPage from "./map/seoulMap";
 import { UploadPost } from "./forum/UploadPost";
 import {PostPage} from "./forum/PostPage";
+import Admin from "./admin/Admin";
 
 // import style
 import '../../style/style.css';
@@ -71,34 +72,6 @@ export const MainBoard = () => (
 )
 
 /**
- * MyInfo
- * 마이 페이지
- */
-export const MyInfo = () => (
-  <PageTemplate>
-    <section className="my-info">
-      <MyInformation />
-    </section>
-  </PageTemplate>
-)
-
-export const MyPersonalInfo = () => (
-  <PageTemplate>
-    <section className="my-info-board">
-      <MyInformation />
-    </section>
-  </PageTemplate>
-)
-
-export const MyUploadingPost = () => (
-  <PageTemplate>
-    <section className="my-post-board">
-      <MyPost />
-    </section>
-  </PageTemplate>
-)
-
-/**
  * MissBoard
  * 실종 게시판
  * 하위 메뉴 없음
@@ -127,7 +100,6 @@ export const MoreInfo = () => (
     </section>
   </PageTemplate>
 )
-
 
 /**
  * FindBoard
@@ -189,8 +161,45 @@ export const SeoulMap = () => (
   </PageTemplate>
 )
 
+/**
+ * MyInfo
+ * 마이 페이지
+ */
+export const MyInfo = () => (
+  <PageTemplate>
+    <section className="my-info">
+      <MyInformation />
+    </section>
+  </PageTemplate>
+)
 
+export const MyPersonalInfo = () => (
+  <PageTemplate>
+    <section className="my-info-board">
+      <MyInformation />
+    </section>
+  </PageTemplate>
+)
 
+export const MyUploadingPost = () => (
+  <PageTemplate>
+    <section className="my-post-board">
+      <MyPost />
+    </section>
+  </PageTemplate>
+)
+
+/**
+ * Admin
+ * 관리자 페이지
+ */
+export const AdminBoard = () => (
+  <PageTemplate>
+    <section className="admin-board">
+      <Admin />
+    </section>
+  </PageTemplate>
+)
 
 // 검색 메뉴
 export const Search = () => (

@@ -58,16 +58,22 @@ a {
   width: 280px;
 }
 
-.header-profile {
+.header-profile, .header-admin {
   width: 40px;
   filter: invert(100%);  
 }
 
-.header-profile-div{
-  margin-right: 1%;
-  overflow:visible;
+.header-profile-div, .header-admin-div {
+  overflow: visible;
   margin-top: 0.5%;
+}
 
+.header-profile-div {
+  margin-right: 1%;
+}
+
+.header-admin-div {
+  margin-right: 0.3%;
 }
 
 .header p {

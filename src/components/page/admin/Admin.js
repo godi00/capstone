@@ -1,9 +1,12 @@
 /**
- * ./src/components/page/admin/AdminPage.js
+ * ./src/components/page/admin/Admin.js
  * 관리자 페이지
  */
 
-const AdminPage = () => {
+// 회원 관리(탈퇴)
+// 사이트 추이(통계)
+
+const Admin = () => {
     return(
         <>
             <div>
@@ -13,4 +16,4 @@ const AdminPage = () => {
     );
 };
 
-export default AdminPage
+export default Admin
