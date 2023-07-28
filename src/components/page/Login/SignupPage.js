@@ -95,7 +95,7 @@ const SignupPage = () => {
                                 type="text" required={true} name="address"
                                 onChange={handleInput} value={fullAddress.address} />
                             <br/>
-                            <input className="address-input" placeholder="상세주소"
+                            <input className="extraAddress-input" placeholder="상세주소"
                                 type="text" required={true} name="extraAddress"
                                 onChange={handleInput} value={fullAddress.extraAddress} />
                         </div>

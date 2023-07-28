@@ -178,7 +178,11 @@
     float: left;
 
     .address-input {
-        width: 100%;
+        width: 104%;
+    }
+
+    .extraAddress-input {
+        width: 161%;
     }
 }
 
@@ -188,10 +192,10 @@
     float: right;
 
     .address-btn {
-        width: 80%;
+        width: 83%;
 
-        margin-left: 13.5%;
-        margin-top: 15%;
+        margin-left: 15%;
+        margin-top: 4%;
     }
 }
 
