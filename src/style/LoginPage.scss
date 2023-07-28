@@ -1,86 +1,109 @@
 /**
  * ./src/components/page/Login/LoginPage.scss
+ * 로그인 페이지, 회원가입 페이지 scss
  */
-.login{
-    height: 50vh;   //div height
+
+/**
+ * 로그인 페이지
+ */
+.login-page {
+    width: 100%;
+    background-color: #eef5ed;
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+
+button {
+    font-family: 'NanumSquare', sans-serif;
+    font-weight: bold;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+    background-color: #69a65f;
+
+    cursor: pointer;
+}
+
+.login {
+    height: 50vh; // div height
+    width: 50vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color:white;
-    border-radius: 15px;
-    margin-top:4%;
-    margin-left:35%;
-    margin-right:35%;
-    padding-bottom:10px;
 
-    h4{
-        display:flex;
-        justify-content:left;
-        margin-left:-80%;
-        margin-top:-3%;
-        text-align:left;
-        font-family: 'NanumSquare', sans-serif, bold;
+    border-radius: 15px;
+    background-color: white;
+    
+    margin-top: 4%;
+
+    h2 { // 로그인 문구
+        color: #376330;
+        background-color: white;
+
+        margin-bottom: 12%;
     }
 
-    form{
+    form { // 로그인 폼
         display: flex;
-        flex-direction: column; //세로정렬
+        flex-direction: column; // 세로 정렬
         align-items: center;
 
-        input{
-            width: 200px;
+        input {
+            width: 150%;
             height: 30px;
-            margin: 10px;
+
+            margin: 3%;
         }
 
-        button{
-            margin-top: 15px;
-            width: 200px;
+        button { // 로그인 버튼
+            width: 70%;
             height: 30px;
-            border: none;
-            border-radius: 8px;
-            background-color: #69a65f;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: 'NanumSquare', sans-serif, bold;
+            
+            margin-top: 15%;
         }
 
-        span{
-            margin-top: 10px;
-            font-size: 12px;
+        span { // 경고 문구
+            font-size: 71%;
             color: red;
+
+            height: 10px;
+
+            margin-top: 10%;
         }
-
-    }
-
-    .googleLogin-btn{
-        margin-top: -5px;
-        width: 200px;
-        height: 30px;
-        border: none;
-        border-radius: 8px;
-        background-color: #69a65f;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        font-family: 'NanumSquare', sans-serif, bold;
-    }
-
-    div{
-        margin-top: 30px;
-        float: left;
     }
 }
 
-.signup{
-    height: 70vh;   //div height
+.loginPage-btn { // 구글 로그인, 회원가입 버튼
+    display: flex;
+    justify-content: center;
+
+    margin-top: 1%;
+
+    button {        
+        width: 10%;
+        height: 30px;
+        
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+}
+
+/**
+ * 회원가입 페이지
+ */
+.signup {
+    height: 70vh; // div height
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
     background-color: #eef5ed;
+    
     padding-bottom:10%;
     padding-top:5%;
 

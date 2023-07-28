@@ -1,32 +1,33 @@
-.warning{
-  margin-left:50%;
-  margin-right:31%;
-  margin-bottom:-10px;
+.warning {
+  margin-left: 50%;
+  margin-right: 31%;
+  margin-bottom: -10px;
+
   font-size: 15px;
   color: #40643b;
 }
 
-.upload-page2{
+.upload-page2 {
     padding-left: 25px;
     padding-top: 12px;
-    //padding-bottom: 15px;
+
     background-color: white;
+
     margin-left:30%;
     margin-right:30%;
     margin-top: 2px;
-    //margin-bottom:5px;
+
     border:2px #84b77d;
     border-radius: 15px;
 
-    form{
+    form {
         input {
           font-family: 'NanumSquare', sans-serif, bold;
           color: #376330;
 
           border-color: #b4c5b0;
           border-radius: 6px;
-          border-width: 2px; 
-          // padding: 0.4%; 
+          border-width: 2px;
         }
 
         textArea {
@@ -35,25 +36,27 @@
 
           border-color: #b4c5b0;
           border-radius: 6px;
-          border-width: 2px; 
+          border-width: 2px;
+
           padding: 0.4%; 
         }
 
-        .specify_farColor{
-          // width: 300px;
+        .specify_farColor {
           height: 25px;
+
           display: flex;
           position: relative;
           align-items: center;
+          
           padding-bottom: 28px;
 
-          select{
+          select {
             width: 180px;
             height: 21px;
           }
         }
 
-        .neutering{
+        .neutering {
           label {
             font-weight: 400;
             font-size: 14px;
@@ -61,13 +64,16 @@
           
           padding-left: 10px;
           padding-top: -25px;
+
           display: flex;
           position: relative;
+          align-items: center;
+          
           width:500px;
           height:25px;
+          
           margin-left:-9px;
           margin-bottom:10px;
-          align-items: center;
         }
 
         .age{

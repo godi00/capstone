@@ -19,6 +19,10 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
+    const toSignup = () => {
+        navigate(`/login/signup`);
+    }
+
     const LoginHandler = e => {
         e.preventDefault();        
 
@@ -111,19 +115,18 @@ const LoginPage = () => {
     return(
         <>
         <div className="login-page">
-        <h2>로그인</h2>
             <div className="login">
-                <h4>Login</h4>
-            <form onSubmit = {LoginHandler}>
-                <input type="email" placeholder="email" onChange={(e=>setEmail(e.target.value))} />
-                <input type="password" placeholder="password" onChange={(e=>setPassword(e.target.value))}/>
-                <button type="submit" onClick={setInfo}>Login</button>
-                { error && <span>잘못된 이메일 혹은 비밀번호입니다.</span> }
-            </form>
-            <div>
-                <button className="googleLogin-btn" onClick={GoogleLoginHandler}>Google 로그인</button>
+                <h2>로그인</h2>
+                <form onSubmit = {LoginHandler}>
+                    <input type="email" placeholder="email" onChange={(e=>setEmail(e.target.value))} />
+                    <input type="password" placeholder="password" onChange={(e=>setPassword(e.target.value))}/>
+                    { error ? <span>잘못된 이메일 혹은 비밀번호입니다.</span> : <span/> }
+                    <button type="submit" onClick={setInfo}>Login</button>
+                </form>
             </div>
-            <div><Link className="signup-btn" to="signup">회원가입</Link></div>
+            <div className="loginPage-btn">
+                <button className="googleLogin-btn" onClick={GoogleLoginHandler}>Google 로그인</button>
+                <button className="signup-btn" onClick={toSignup}>회원가입</button>
             </div>
         </div>
         </>
