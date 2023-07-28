@@ -118,15 +118,15 @@ const LoginPage = () => {
             <div className="login">
                 <h2>로그인</h2>
                 <form onSubmit = {LoginHandler}>
-                    <input type="email" placeholder="email" onChange={(e=>setEmail(e.target.value))} />
-                    <input type="password" placeholder="password" onChange={(e=>setPassword(e.target.value))}/>
+                    이메일<input type="email" placeholder="email" onChange={(e=>setEmail(e.target.value))} />
+                    비밀번호<input type="password" placeholder="password" onChange={(e=>setPassword(e.target.value))}/>
                     { error ? <span>잘못된 이메일 혹은 비밀번호입니다.</span> : <span/> }
                     <button type="submit" onClick={setInfo}>Login</button>
                 </form>
             </div>
             <div className="loginPage-btn">
-                <button className="googleLogin-btn" onClick={GoogleLoginHandler}>Google 로그인</button>
-                <button className="signup-btn" onClick={toSignup}>회원가입</button>
+                <button onClick={GoogleLoginHandler}>Google 로그인</button>
+                <button onClick={toSignup}>회원가입</button>
             </div>
         </div>
         </>

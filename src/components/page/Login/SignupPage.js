@@ -75,35 +75,41 @@ const SignupPage = () => {
     };
 
     return(
-        <div className="signup">
-            <form onSubmit = {LoginHandler}>                
-                이메일
-                <input type="email" placeholder="email" onChange={(e=>setEmail(e.target.value))} /><br/>
-                비밀번호
-                <input type="password" placeholder="password" onChange={(e=>setPassword(e.target.value))}/><br/>
-                이름
-                <input type="text" placeholder="이름" onChange={(e=>setName(e.target.value))}/><br/>
-                전화번호
-                <input type="text" placeholder="전화번호" onChange={(e=>setPhoneNumber(e.target.value))}/><br/>
-                주소
-                <div>
-                    <input className="address" placeholder="주소"
-                        type="text" required={true} name="address"
-                        onChange={handleInput} value={fullAddress.address}/>
-                    <button type="button" onClick={handleComplete}>우편번호 찾기</button>
-                    <br/>
-                    <input className="address" placeholder="상세주소"
-                        type="text" required={true} name="extraAddress"
-                        onChange={handleInput} value={fullAddress.extraAddress} />
-                    
-                    {openPopup &&
-                        <Post company={fullAddress} setcompany={setFullAddress}></Post>}
-                </div>
-                
-                <br/><br/><br/>
-                <button type="submit" >회원가입</button>
-            </form>
+        <>
+        <div className="signup-page">
+            <div className="signup">
+                <h2>회원가입</h2>
+                <form onSubmit = {LoginHandler}>                
+                    이메일
+                    <input type="email" placeholder="email" onChange={(e=>setEmail(e.target.value))} /><br/>
+                    비밀번호
+                    <input type="password" placeholder="password" onChange={(e=>setPassword(e.target.value))}/><br/>
+                    이름
+                    <input type="text" placeholder="이름" onChange={(e=>setName(e.target.value))}/><br/>
+                    전화번호
+                    <input type="text" placeholder="전화번호" onChange={(e=>setPhoneNumber(e.target.value))}/><br/>
+                    주소
+                    <div className="address-div">
+                        <div className="address-input-div">
+                            <input className="address-input" placeholder="주소"
+                                type="text" required={true} name="address"
+                                onChange={handleInput} value={fullAddress.address} />
+                            <br/>
+                            <input className="address-input" placeholder="상세주소"
+                                type="text" required={true} name="extraAddress"
+                                onChange={handleInput} value={fullAddress.extraAddress} />
+                        </div>
+                        <div className="address-btn-div">
+                            <button className="address-btn" type="button" onClick={handleComplete}>우편번호 찾기</button>
+                        </div>
+                        {openPopup &&
+                            <Post company={fullAddress} setcompany={setFullAddress}></Post>}
+                    </div>
+                    <button className="signup-btn" type="submit">회원가입</button>
+                </form>
+            </div>
         </div>
+        </>
     )
 }
 

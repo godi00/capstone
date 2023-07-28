@@ -245,7 +245,6 @@ export const Login = () => (
 // 회원가입 페이지
 export const Signup = () => (
   <div className="signup-page">
-    <h2>회원가입</h2>
     <SignupPage/>
   </div>
 );

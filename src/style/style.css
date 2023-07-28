@@ -219,17 +219,3 @@ a {
   margin: auto;
   background-color: #eef5ed;  
 }
-
-.login-page h2 {
-  margin-top:-20px;
-  padding: 12px;
-  height: auto;  
-  background-color: #eef5ed; 
-}
-
-.signup-page h2{
-  margin-top:auto;
-  margin-bottom:auto;
-  padding:10px;
-  background-color: #eef5ed; 
-}
