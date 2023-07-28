@@ -11,7 +11,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from 'firebase/firestore';
 import Post from './Post';
 
-const SingupPage = () => {
+const SignupPage = () => {
     const [error, setError] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -107,4 +107,4 @@ const SingupPage = () => {
     )
 }
 
-export default SingupPage
+export default SignupPage
