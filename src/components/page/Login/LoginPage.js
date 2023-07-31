@@ -121,6 +121,7 @@ const LoginPage = () => {
                     이메일<input type="email" placeholder="email" onChange={(e=>setEmail(e.target.value))} />
                     비밀번호<input type="password" placeholder="password" onChange={(e=>setPassword(e.target.value))}/>
                     { error ? <span>잘못된 이메일 혹은 비밀번호입니다.</span> : <span/> }
+                    <br/>
                     <button type="submit" onClick={setInfo}>Login</button>
                 </form>
             </div>
