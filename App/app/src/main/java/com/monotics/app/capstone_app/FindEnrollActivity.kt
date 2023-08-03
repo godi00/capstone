@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Timestamp
@@ -20,6 +21,7 @@ import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import com.monotics.app.capstone_app.data.NotificationBody
 import com.monotics.app.capstone_app.databinding.ActivityFindenrollBinding
 import kotlinx.android.synthetic.main.activity_missenroll.*
 
@@ -35,6 +37,7 @@ class FindEnrollActivity :AppCompatActivity(){
     private lateinit var storageRef: StorageReference
     private lateinit var db: FirebaseFirestore
     private lateinit var selectedImageUris: MutableList<Uri>
+    private val firebaseViewModel : FirebaseViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,6 +118,7 @@ class FindEnrollActivity :AppCompatActivity(){
                         db.collection("Finding").document(documentReference.id).update("id",documentReference.id)
                         Toast.makeText(this,"게시물을 등록했습니다", Toast.LENGTH_SHORT).show()
                     }
+                findMatchingData(enrollinf)
             } else if(imageUrls.size>1) { // 사진이 여러장 있을 때
                 val enrollinf= hashMapOf(
                     "address" to address,
@@ -138,6 +142,7 @@ class FindEnrollActivity :AppCompatActivity(){
                         db.collection("Finding").document(documentReference.id).update("id",documentReference.id)
                         Toast.makeText(this,"게시물을 등록했습니다", Toast.LENGTH_SHORT).show()
                     }
+                findMatchingData(enrollinf)
             }
             else{ //사진이 없을 때
                 val imageUrls = ArrayList<String>()
@@ -237,7 +242,6 @@ class FindEnrollActivity :AppCompatActivity(){
     }
     // 등록한 데이터와 50% 이상 일치하는 데이터의 id를 가져오기 위한 함수
     private fun findMatchingData(enrollData: HashMap<String, Any?>) {
-        Log.e("kimshin", enrollData.toString())
         // 등록한 데이터의 필요요소들을 배열로 가져옴
         val interests = enrollData["farColor1"]
 
@@ -249,11 +253,37 @@ class FindEnrollActivity :AppCompatActivity(){
                 for (document in querySnapshot.documents) {
                     // 등록한 데이터와 50% 이상 일치하는 데이터의 id 출력
                     Log.e("kimshin", document["uid"] as String)
+                    var uid = document["uid"] as String
+
+                    db.collection("Users").whereEqualTo("uid",uid).get()
+                        .addOnSuccessListener { userQuerySnapshot ->
+                            if (!userQuerySnapshot.isEmpty) {
+                                val userDocument = userQuerySnapshot.documents[0]
+                                val token = userDocument["token"].toString()
+
+                                val notificationData = NotificationBody.NotificationData(
+                                    title = "비슷한 게시물 업로드!",
+                                    userId = "user123",
+                                    message = "비슷한 게시물이 올라왔습니다 확인해주세요!"
+                                )
+
+                                val notificationBody = NotificationBody(
+                                    to = token,
+                                    priority = "high",
+                                    data = notificationData
+                                )
+                                firebaseViewModel.sendNotification(notificationBody)
+                            }
+                        }
+
+
                 }
-            } else {
+            }
+            else {
                 Log.e("kimshin", "데이터 없습니다.")
             }
         }
+
         
     }
 

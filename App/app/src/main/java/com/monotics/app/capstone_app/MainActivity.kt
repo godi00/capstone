@@ -15,8 +15,11 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -42,24 +45,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setPage()
         true
     }
-    private fun initDynamicLink() {
-        val dynamicLinkData = intent.extras
-        if (dynamicLinkData != null) {
-            var dataStr = "DynamicLink 수신받은 값\n"
-            for (key in dynamicLinkData.keySet()) {
-                dataStr += "key: $key / value: ${dynamicLinkData.getString(key)}\n"
-            }
+    private fun saveTokenToDatebase(uid: String, token: String){
+        db.collection("Users").document(uid).update("token",token)
+    }
 
-            binding.totalmiss.text = dataStr
-        }
+    override fun onResume() {
+        super.onResume()
+        //화면이 나타날때마다 토큰 값 변경됨.
+        val user = FirebaseAuth.getInstance().currentUser
+        val firebaseMessaging = FirebaseMessaging.getInstance()
+        firebaseMessaging.token.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result // 토큰 값을 얻어옴.
+                // 토큰을 사용자 UID와 연결하여 Firebase 데이터베이스에 저장.
+                if (user != null) {
+                    saveTokenToDatebase(user.uid, token)
+                }
+            } else {
+                // 토큰 가져오기 실패 시 처리
+            }
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         FirebaseApp.initializeApp(this)
-        MyFirebaseMessagingService().getFirebaseToken()
-        initDynamicLink()
+
 
         //배너 부분
         viewPager = binding.pager
@@ -155,27 +167,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //로고화면 누르면 메인액티비티로
         binding.logo.setOnClickListener {
-            //val intent = Intent(this,MainActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
 
-            // FCM 전송하기
-//            val data = NotificationBody.NotificationData(getString(R.string.app_name)
-//                ,"kim","hi")
-//            val token = "dCOgnpI2SWGm9TM15uUQb1:APA91bHF0pT34d06CYqDVerSEcsO8Gc9EdtabcJQjkSY-jIdRvGkmYlWmrRnWNoyoLlJeR8g4B_LVajq5UBPp4Wm9V8w58FCwDGIa2uX7vvqgzc9OnDHwMdEUUdEcHEdB7T3J4CwQV1N"
-//            val body = NotificationBody(token,"high", data)
-
-            val notificationData = NotificationBody.NotificationData(
-                title = "Notification Title",
-                userId = "user123",
-                message = "Hello, this is a test notification!"
-            )
-
-            val notificationBody = NotificationBody(
-                to = "dCOgnpI2SWGm9TM15uUQb1:APA91bHF0pT34d06CYqDVerSEcsO8Gc9EdtabcJQjkSY-jIdRvGkmYlWmrRnWNoyoLlJeR8g4B_LVajq5UBPp4Wm9V8w58FCwDGIa2uX7vvqgzc9OnDHwMdEUUdEcHEdB7T3J4CwQV1N",
-                priority = "high",
-                data = notificationData
-            )
-            firebaseViewModel.sendNotification(notificationBody)
         }
     }
 

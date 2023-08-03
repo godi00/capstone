@@ -35,12 +35,10 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
             override fun onResponse(call: okhttp3.Call, response: Response) {
                 println(response.body?.string())
                 response.close() // 수신한 response를 반드시 close 해줍니다.
-                Log.d("kimshins",json)
             }
 
             override fun onFailure(call: okhttp3.Call, e: IOException) {
                 e.printStackTrace()
-                Log.d("kimshins","server")
             }
         })
 //        viewModelScope.launch {
