@@ -1,4 +1,9 @@
-.find-page-upload-btn{
+/**
+ * ./src/style/FindPage.scss
+ * 목격 페이지 scss
+ */
+
+.find {
     margin-right:0.2%;
     margin-bottom:-1%;
     margin-top:-2px;
@@ -8,7 +13,7 @@
     justify-content: row;
     justify-content: space-between;
 
-    .find-page-upload-btn2{
+    .find-page-upload-btn {
         width: 150px;
         height: 30px;
         border: none;
@@ -22,7 +27,7 @@
     }
 }
 
-.find-page-moreInfo-btn, .find-page-moreInfo2-btn{
+.findpage-moreInfo {
     margin-left:1%;
     margin-right:0.5%;
     margin-bottom:-1%;
@@ -32,7 +37,7 @@
     justify-content: row;
     justify-content: space-between;
 
-    .find-page-moreInfo-btn2, .find-page-moreInfo2-btn2{
+    .findpage-moreInfo-btn {
         width: 100px;
         height: 30px;
         border: none;
@@ -45,41 +50,6 @@
         font-family: 'NanumSquare', sans-serif, bold;
     }
 }
-
-// .findpage-chart {
-//     padding-left: 2%;
-//     padding-right: 2%;
-//     margin-top: 1.0%;
-//     margin-left: 0.6%;
-//     margin-right: 0.6%;
-//     background-color: #eef5ed;
-//     border-radius: 8px;
-
-//     .find-pie {
-//         width: 35%;
-//         float: left;
-//         background-color: #eef5ed;
-
-//         .find-pie-p1 {
-//             margin: 0 auto;
-//             padding-top: 5%;
-//             padding-left: 8.4%;
-//             color: #376330;
-//         }
-//     }
-
-//     .find-bar {
-//         width: 65%;
-//         float: right;
-//         background-color: #eef5ed;
-
-//         .find-bar-p1 {
-//             padding-top: 1%;
-//             padding-left: 30%;
-//             color: #376330;
-//         }
-//     }
-// }
 
 .findpage-chart {
     padding-left: 0.5%;

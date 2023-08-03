@@ -6,7 +6,6 @@
 // import components
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase";
 import Carousel from "../miss/carousel";
 import { PieChart } from "../miss/PieChart";
 import { BarChart } from "../miss/BarChart";
@@ -28,16 +27,16 @@ export const FindPage = () => {
     return (
         <>
             <div className="find-page">
-                <div className="find-page-upload-btn">
+                <div className="find">
                     <h2>목격 게시판</h2>
-                    <button className="find-page-upload-btn2" type="button" onClick={toUpload}>목격 등록하기</button>
+                    <button className="find-page-upload-btn" type="button" onClick={toUpload}>목격 등록하기</button>
                 </div>
 
                 <br/>
                 
-                <div className="find-page-moreInfo-btn">
+                <div className="findpage-moreInfo">
                     <h3>최근 목격 순</h3> 
-                    <button className="find-page-moreInfo-btn2" type="button" onClick={toMoreInfo}>더보기</button>
+                    <button className="findpage-moreInfo-btn" type="button" onClick={toMoreInfo}>더보기</button>
                 </div>
                 
                 <Carousel category={"Finding"} cg={"Finding"}/>

@@ -1,14 +1,19 @@
-.miss-page-upload-btn{
-    margin-right:0.2%;
-    margin-bottom:-1%;
-    margin-top:-2px;
+/**
+ * ./src/style/MissPage.scss
+ * 실종 페이지 scss
+ */
+
+.miss {
     display: flex;
     position: relative;
     align-items: center;
     justify-content: row;
     justify-content: space-between;
 
-    .miss-page-upload-btn2{
+    margin-right:0.2%;
+    margin-bottom:-1%;
+
+    .miss-page-upload-btn {
         width: 150px;
         height: 30px;
         border: none;
@@ -22,7 +27,7 @@
     }
 }
 
-.misspage-moreInfo-btn, .miss-page-moreInfo2-btn{
+.misspage-moreInfo {
     margin-left:1%;
     margin-right:0.5%;
     margin-bottom:-1%;
@@ -32,7 +37,7 @@
     justify-content: row;
     justify-content: space-between;
 
-    .misspage-moreInfo-btn2, .miss-page-moreInfo2-btn2{
+    .misspage-moreInfo-btn {
         width: 100px;
         height: 30px;
         border: none;

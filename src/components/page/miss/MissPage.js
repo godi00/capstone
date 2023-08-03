@@ -32,16 +32,16 @@ export const MissPage = () => {
     return (
         <>
             <div className="miss-page">
-                <div className="miss-page-upload-btn">
+                <div className="miss">
                     <h2>실종 게시판</h2>
-                    <button className="miss-page-upload-btn2" type="button" onClick={toUpload}>실종 등록하기</button>
+                    <button className="miss-page-upload-btn" type="button" onClick={toUpload}>실종 등록하기</button>
                 </div>
 
                 <br/>
                 
-                <div className="misspage-moreInfo-btn">
+                <div className="misspage-moreInfo">
                     <h3>최근 실종 순</h3> 
-                    <button className="misspage-moreInfo-btn2" type="button" onClick={toMoreInfo}>더보기 &gt;</button>
+                    <button className="misspage-moreInfo-btn" type="button" onClick={toMoreInfo}>더보기 &gt;</button>
                 </div>
                 
                 <Carousel category={"Missing"} cg={"Missing"}/>
