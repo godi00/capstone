@@ -9,16 +9,19 @@ import android.os.Looper
 import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.core.text.HtmlCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.monotics.app.capstone_app.data.NotificationBody
 import com.monotics.app.capstone_app.data.ProfileDataViewModel
 import com.monotics.app.capstone_app.databinding.ActivityMainBinding
 import com.monotics.app.capstone_app.databinding.NavheaderBinding
@@ -32,16 +35,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val missData = db.collection("Missing")
     private val findData = db.collection("Finding")
     lateinit var viewPager: ViewPager2
+    private val firebaseViewModel : FirebaseViewModel by viewModels()
 
     var currentPosition = 0
     val handler= Handler(Looper.getMainLooper()){
         setPage()
         true
     }
+    private fun initDynamicLink() {
+        val dynamicLinkData = intent.extras
+        if (dynamicLinkData != null) {
+            var dataStr = "DynamicLink 수신받은 값\n"
+            for (key in dynamicLinkData.keySet()) {
+                dataStr += "key: $key / value: ${dynamicLinkData.getString(key)}\n"
+            }
+
+            binding.totalmiss.text = dataStr
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        FirebaseApp.initializeApp(this)
+        MyFirebaseMessagingService().getFirebaseToken()
+        initDynamicLink()
 
         //배너 부분
         viewPager = binding.pager
@@ -82,6 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val total = querySnapshot?.count()
             binding.findcomplete.text = total.toString()
         }
+        //토큰 찾기
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Log.e("token",task.result.toString())
@@ -136,8 +155,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //로고화면 누르면 메인액티비티로
         binding.logo.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            //val intent = Intent(this,MainActivity::class.java)
+            //startActivity(intent)
+
+            // FCM 전송하기
+//            val data = NotificationBody.NotificationData(getString(R.string.app_name)
+//                ,"kim","hi")
+//            val token = "dCOgnpI2SWGm9TM15uUQb1:APA91bHF0pT34d06CYqDVerSEcsO8Gc9EdtabcJQjkSY-jIdRvGkmYlWmrRnWNoyoLlJeR8g4B_LVajq5UBPp4Wm9V8w58FCwDGIa2uX7vvqgzc9OnDHwMdEUUdEcHEdB7T3J4CwQV1N"
+//            val body = NotificationBody(token,"high", data)
+
+            val notificationData = NotificationBody.NotificationData(
+                title = "Notification Title",
+                userId = "user123",
+                message = "Hello, this is a test notification!"
+            )
+
+            val notificationBody = NotificationBody(
+                to = "dCOgnpI2SWGm9TM15uUQb1:APA91bHF0pT34d06CYqDVerSEcsO8Gc9EdtabcJQjkSY-jIdRvGkmYlWmrRnWNoyoLlJeR8g4B_LVajq5UBPp4Wm9V8w58FCwDGIa2uX7vvqgzc9OnDHwMdEUUdEcHEdB7T3J4CwQV1N",
+                priority = "high",
+                data = notificationData
+            )
+            firebaseViewModel.sendNotification(notificationBody)
         }
     }
 
@@ -184,4 +222,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.drawable.banner3
         )
     }
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        updateResult(true)
+    }
+
+    private fun initFirebase() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                binding.totalfind.text = task.result
+            }
+        }
+    }
+    private fun updateResult(isNewIntent: Boolean = false) {
+        //true -> notification 으로 갱신된 것
+        //false -> 아이콘 클릭으로 앱이 실행된 것
+        binding.totalmiss.text = (intent.getStringExtra("notificationType") ?: "앱 런처") + if (isNewIntent) {
+            "(으)로 갱신했습니다."
+        } else {
+            "(으)로 실행했습니다."
+        }
+    }
+
 }

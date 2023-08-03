@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId "com.monotics.app.capstone_app"
-        minSdk 21
+        minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -62,7 +62,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx'
-    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     //Nav controller
     // Kotlin
@@ -93,5 +92,17 @@ dependencies {
     //FCM
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-messaging-ktx' //FCM-push
+    implementation 'com.google.firebase:firebase-messaging-ktx: 23.2.0' //FCM-push
+    // JSON의 자바 오브젝트의 직렬화, 역직렬화
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
+
+// Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
 }
