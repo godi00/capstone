@@ -1,0 +1,79 @@
+/**
+ * ./src/style/Header.scss
+ * 헤더 scss
+ */
+
+// 0~800px까지 안 나타남
+// @media only screen and (max-width: 750px) {
+//     .header-text-div {
+//         display: none;
+//     }
+// }
+
+.header {
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+
+    background-color: #95C77E;
+}
+  
+.header-left-div {
+    float: left;
+  
+    width: 90%;
+    height: 100%;
+
+    .header-text-div {
+        font-size: 95%;
+        color: white;
+      
+        width: 25%;
+        height: 100%;
+
+        float: left;
+
+        margin-top: 6px;
+        margin-left: 1.3%;
+    }
+
+    .header-logo-div {
+        width: 25%;
+        height: 100%;
+
+        float: right;
+
+        margin-top: 15px;
+        margin-right: 32%;
+
+        .header-logo {
+            width: 280px;
+        }
+    }
+}
+  
+.header-right-div {
+    float: right;
+    display: flex;
+    
+    width: 10%;
+
+    .header-profile, .header-admin {
+        width: 40px;
+        filter: invert(100%);
+    }
+
+    .header-profile-div {
+        float: right;
+
+        margin-right: 20%;
+    }
+    
+    .header-admin-div {
+        float: left;
+
+        margin-left: 10%;
+    }
+}

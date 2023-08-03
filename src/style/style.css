@@ -21,36 +21,58 @@ a {
   color: #1E1E1E;
 }
 
-/* Page Template */
+/**
+ * Page Template
+ * ./src/components/page/Pages.js
+ */
 .page {
   width: 100%;
   height: 100%;
 }
 
-/* Header */
-.header {
+/**
+ * Header
+ * ./src/components/Header.js
+ */
+/* .header {
+  width: 100%;
+  height: 90px;
+
   display: flex;
-  align-items:center;
-  justify-content: space-between;
+  align-items: center;
+
   background-color: #95C77E;
 }
 
+.header-left-div {
+  float: left;
+
+  width: 70%;
+}
+
+.header-right-div {
+  float: right;
+
+  width: 30%;
+}
+
 .header-text-div {
+  font-size: 95%;
   color: white;
-  font-size: 15px;
-  margin-top: 5px;
-  margin-left: 20px;
-  width: 250px;
-  position:absolute;
-  overflow:hidden;
+
+  width: 25%;
+
+  margin-left: 1.3%;
+  
+  position: absolute;
+  overflow: hidden;
 }
 
 .header-logo-div {
-  margin-top: 12px;
-  margin-bottom: 10px;
+  width: 25%;
+
   margin-left: 42%;
   margin-right: 30%;
-  display:fixed;
 }
 
 .header-logo {
@@ -64,21 +86,19 @@ a {
 
 .header-profile-div, .header-admin-div {
   overflow: visible;
-  margin-top: 0.5%;
-}
 
-.header-profile-div {
-  margin-right: 1%;
+  width: 25%;
+
+  margin-top: 0.5%;
 }
 
 .header-admin-div {
   margin-right: 0.3%;
 }
 
-.header p {
-  text-decoration: none;
-  color:rgb(0, 77, 17);
-}
+.header-profile-div {
+  margin-right: 1%;
+} */
 
 /* Footer */
 .Footer{
