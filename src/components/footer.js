@@ -17,7 +17,7 @@ const Footer = () => {
             <nav>
                 <a className="footer-github" href="https://github.com/godi00/capstone" targer="_blank">&gt; Github</a>
             </nav>
-            <h5>팀원: 김신승, 양수진, 윤서희, 이가은  &ensp;| &ensp;지도교수: 김영웅</h5>
+            <h5>팀원: 김신승, 양수진, 윤서희, 이가은</h5>
             </div>
         </footer>
         </div>
