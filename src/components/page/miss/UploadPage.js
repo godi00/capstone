@@ -23,6 +23,13 @@ const UploadPage = () => {
     var submit = true;
     //var img = 1;
 
+
+    useEffect(() => {
+		setDateAttr();
+	}, []);
+
+
+
     function wait(sec) {
         let start = Date.now(), now = start;
         while (now - start < sec * 1000) {
@@ -119,6 +126,15 @@ const UploadPage = () => {
         setAddress(data.address);
         setData((prev)=>({...prev, address:data.address}));
     }
+
+    //날짜선택 시 오늘 이후날짜 선택못하도록 제한하는 함수
+    const setDateAttr = () => {
+        let dateElement = document.getElementById('date');
+        let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
+        //dateElement.value = date;
+        dateElement.setAttribute("max", date);
+    }
+
 
     const postCodeStyle = {
         display: "block",
