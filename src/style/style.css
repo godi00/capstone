@@ -144,7 +144,7 @@ a {
 }
 
 .Bind{
-  display:flex;
+  display: grid;
 }
 
 .miss-page, .find-page {
