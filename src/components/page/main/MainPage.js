@@ -39,6 +39,7 @@ export const MainPage = () => {
                         </div>
                         <Explain/>
                     </div>
+                    <br/><br/>
                     <Explain2/>
                 </div>
                 <br/><br/>

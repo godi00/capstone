@@ -12,8 +12,8 @@ import '../../../style/explain2.scss';
 
 const Explain2 =()=>{
   return(
-    <div>
-      <table align="right">
+    <div className="explain2">
+      <table className="explain2_table" align="right">
         <thead>
           <tr>
             <th> - </th>
