@@ -8,7 +8,6 @@ import React from "react";
 import ReactPlayer from 'react-player'
 import BannerCarousel  from "./banner";
 import Explain from "./explain";
-import Explain2 from "./explain2";
 
 export const MainPage = () => {
     return (
@@ -38,8 +37,6 @@ export const MainPage = () => {
                     </div>
                     <Explain/>
                 </div>
-                <br/><br/>
-                <Explain2/>
                 <br/><br/>
             </div>
         </>
