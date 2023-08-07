@@ -35,8 +35,8 @@ const EditMyInfo = () => {
 
     const handleInput = (e) => { // 주소 상태 관리
         setAddress({
-            ...fullAddress,
-            [e.target.name]:e.target.value,
+            address: address.address,
+            extraAddress:e.target.value,
         });
     };
 
@@ -104,7 +104,7 @@ const EditMyInfo = () => {
                                 <br/>
                                 <input className="extraAddress" placeholder="상세주소"
                                     type="text" name="extraAddress"
-                                    onChange={handleInput} value={((address.extraAddress != "null") && (address.extraAddress != null)) ? address.extraAddress : ""} />
+                                    onChange={handleInput} defaultValue={((address.extraAddress != "null") && (address.extraAddress != null)) ? address.extraAddress : ""} />
                                 
                                 {openPopup &&
                                     <Post company={address} setcompany={setAddress}></Post>}
