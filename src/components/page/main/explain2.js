@@ -5,18 +5,18 @@
 
 // import components
 import React from "react";
-import { Link } from "react-router-dom";
 
 // import style
 import '../../../style/explain2.scss';
+import '../../../style/table.scss';
 
 const Explain2 =()=>{
   return(
     <div className="explain2">
-      <table className="explain2_table" align="right">
+      <table className="explain2-table">
         <thead>
           <tr>
-            <th> - </th>
+            <th>  </th>
             <th> 《 실종 반려견 목격 시 대처 방법 》
             </th>
           </tr>

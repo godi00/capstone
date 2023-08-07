@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import '../../../style/style.css';
 import "../../../style/moreInfo.scss";
+import '../../../style/table.scss';
 
 const FindMoreinfoPage = () => {
     const [findPost, setFindPost] = useState([]);
@@ -56,13 +57,13 @@ const FindMoreinfoPage = () => {
                 </div>
 
                 <br/>
-                <div className="moreInfo-table">
+                <div className="find-moreInfo">
                 <h3>최근 목격 순</h3>
-                <table className="moreInfo-table2">
+                <table className="find-moreInfo-table">
                     <th width="6%">번호</th>
-                    <th width="35%">사진</th>
-                    <th width="10%">목격 장소</th>
-                    <th width="15%">목격일</th>
+                    <th width="30%">사진</th>
+                    <th width="15%">목격 장소</th>
+                    <th>목격일</th>
                     <th width="11%">작성자</th>
                     <th width="17%">작성일</th>
                     <tbody>

@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 
 // import style
 import '../../../style/explain.scss';
+import '../../../style/table.scss';
 
 const Explain =()=>{
   return(
-    <div>
-      <table align="right">
+    <div className="explain">
+      <table className="explain-table">
         <thead>
           <tr>
             <th> 순서 </th>

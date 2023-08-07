@@ -7,8 +7,10 @@ import React, {useState, useEffect} from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getDocs, collection, query, orderBy } from "firebase/firestore";
 import { db } from "../../../firebase.js";
-import "../../../style/ForumPage.scss";
 
+// import style
+import "../../../style/ForumPage.scss";
+import '../../../style/table.scss';
 
 export const PostPage = () => {
     const [posting, setPosting] = useState([]); // 가져올 게시글 내용

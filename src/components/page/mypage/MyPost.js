@@ -4,6 +4,7 @@
  */
 
 // import components
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // import about firebase
@@ -13,8 +14,7 @@ import { doc, getDoc } from 'firebase/firestore';
 // import style
 import '../../../style/style.css';
 import '../../../style/mypage.scss';
-import { useEffect, useState } from 'react';
-
+import '../../../style/table.scss';
 
 export const MyPost = () => {
     const [missPost, setMissPost] = useState([]);
@@ -106,7 +106,7 @@ export const MyPost = () => {
                         </select>
                     </div>
                     <div className="my-post-page3">
-                    <table>
+                    <table className='my-post-table'>
                         <thead>
                             <tr>
                                 <th>제목</th>

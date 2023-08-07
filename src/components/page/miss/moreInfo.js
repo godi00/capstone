@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import '../../../style/style.css';
 import "../../../style/moreInfo.scss";
+import '../../../style/table.scss';
 
 const MoreinfoPage = () => {
     const [missPost, setMissPost] = useState([]);
@@ -61,13 +62,13 @@ const MoreinfoPage = () => {
                 </div>
 
                 <br/>
-                <div className="moreInfo-table">
+                <div className="miss-moreInfo">
                 <h3>최근 실종 순</h3> 
-                <table className="moreInfo-table2">
+                <table className="miss-moreInfo-table">
                     <th width="6%">번호</th>
-                    <th width="35%">사진</th>
-                    <th width="10%">이름</th>
-                    <th widht="15%">실종일</th>
+                    <th width="30%">사진</th>
+                    <th width="15%">이름</th>
+                    <th>실종일</th>
                     <th width="11%">작성자</th>
                     <th width="17%">작성일</th>
                     {missPost.map(({ user, name, uploadTime, date, imgs, ids, id, visibled }) => (
@@ -96,7 +97,7 @@ const MoreinfoPage = () => {
                     ))}
                 </table>
                 <br/><br/>
-                </div> 
+                </div>
             </div>
         </>
     );

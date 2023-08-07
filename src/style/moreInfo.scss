@@ -1,3 +1,14 @@
+/**
+ * ./src/style/moreInfo.scss
+ * 실종, 목격 페이지 더보기
+ */
+
+.miss-moreInfo, .find-moreInfo {
+    h3 {
+        margin-left: 1%;
+    }
+}
+
 .moreInfo-page-upload-btn{
     margin-right:0.2%;
     margin-bottom:-1%;
@@ -6,9 +17,8 @@
     position: relative;
     align-items: center;
     justify-content: row;
-    //justify-content: space-between;
 
-    .moreInfo-page-Back-btn{
+    .moreInfo-page-Back-btn {
         width: 150px;
         height: 30px;
         border: none;
@@ -34,64 +44,5 @@
         cursor: pointer;
         font-family: 'NanumSquare', sans-serif, bold;
         margin-left: 0.5%;
-    }
-}
-
-.moreInfo-table{
-    margin-left:1%;
-    margin-right:-1%;
-    // margin-bottom:5%;
-    //display: flex;
-    position: relative;
-    align-items: center;
-    //justify-content: row;
-    justify-content: space-between;
-
-    .moreInfo-table2{    
-        border-collapse : collapse;
-        background-color: #eef5ed;
-        margin-left:-1%;
-        //margin-right:-20%;
-        //margin-bottom:5%;
-
-        th{
-            text-align : center;
-            vertical-align : middle;
-            background-color: #b4c5b0;
-            padding: 10px;
-            text-align : center;
-            vertical-align : middle;
-            //margin-left:-1%;
-        }
-
-        .moreInfo-table-td-number{
-            background-color:#d9ebd5;
-        }
-
-        /*
-        .jd-td-h1{
-            background-color:#d9ebd5;
-        }
-        */
-
-        td{
-            .moreInfo-table-td-imgs{
-                border-radius:5px;
-                width:250px;
-                height:250px;
-                //margin-bottom:5%;
-                //margin-left:-1%;
-            }
-        }
-
-        /*
-        tr:nth-child(2n) {
-            background-color: #bbdefb;
-        }
-
-        tr:nth-child(2n+1) {
-            background-color: #e3f2fd;
-        }
-        */
     }
 }

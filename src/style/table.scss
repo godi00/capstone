@@ -1,0 +1,54 @@
+/**
+ * ./src/style/table.scss
+ * 웹페이지 내 table 공통 스타일
+ * Explain.js, Explain2.js
+ */
+
+.explain-table, .explain2-table {
+    width: 100%;
+}
+
+.miss-moreInfo-table, .find-moreInfo-table,
+.posting-table, .post-detail-table,
+.my-post-table {
+    width: 98%;
+    margin: auto;
+}
+
+.explain-table, .explain2-table,
+.miss-moreInfo-table, .find-moreInfo-table,
+.posting-table, .post-detail-table,
+.my-post-table {
+    background-color: #eef5ed;
+
+    height: 100%;
+  
+    border-collapse: collapse;
+  
+    td {
+      font-weight: 600;
+      padding: 10px;
+      text-align : center;
+      border: 3px solid white;
+    }
+  
+    .explain-td, .explain2-td {
+      font-weight: 400;
+    }
+
+    .moreInfo-table-td-imgs {
+        border-radius: 5px;
+        
+        width: 250px;
+        height: 250px;
+    }
+  
+    th {
+      background-color: #b4c5b0;
+      font-weight: 600;
+      padding: 10px;
+      text-align : center;
+      vertical-align : middle;
+      border: 3px solid white;
+    }
+}
