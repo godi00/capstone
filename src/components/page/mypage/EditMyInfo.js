@@ -34,7 +34,7 @@ const EditMyInfo = () => {
     }
 
     const handleInput = (e) => { // 주소 상태 관리
-        setFullAddress({
+        setAddress({
             ...fullAddress,
             [e.target.name]:e.target.value,
         });
@@ -57,7 +57,7 @@ const EditMyInfo = () => {
         e.preventDefault();
 
         // firebase document update
-        await updateDoc(doc(db, "Users", email), {
+        await updateDoc(doc(db, "Users", auth.currentUser.uid), {
             Email: email,
             Name: name,
             PhoneNumber: phone,
