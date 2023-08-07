@@ -151,6 +151,7 @@ a {
   width: 98%;
   height: 150vh;
   padding: 0;
+  margin: auto;
   
   background-color: #FFFFFF;
 }
