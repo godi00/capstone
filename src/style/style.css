@@ -32,6 +32,7 @@ a {
 
 .sub-page {
   display: flex;
+  height: auto;
 }
 
 /* Footer */
@@ -92,7 +93,7 @@ a {
 .UploadPost-page , .find-upload-page, .find-board,
 .search-board, .main-board, .hospital-map, .upload-board,
 .my-info-board, .my-post-board, .my-info-edit-board,
-.seoul-map-board, .admin-board {
+.seoul-map-board {
   width: 100%;
   background-color: #DDDDDD;
 }
@@ -107,6 +108,11 @@ a {
   width: 100%;
   background-color: #DDDDDD;
   height: 100vh;
+}
+
+.admin-board {
+  width: 100%;
+  background-color: #DDDDDD;
 }
 
 .search-page, .FindUploadPage, .main-page, .map-page, .moreInfo-page, .moreInfo2-page,

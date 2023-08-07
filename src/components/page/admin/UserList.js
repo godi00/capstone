@@ -30,6 +30,10 @@ const UserList = () => {
         setUsers();
     }, []);
 
+    const deactivate = () => {
+        alert('계정 비활성화 기능 준비 중');
+    }
+
     return (
         <>
             <div className="admin-page">
@@ -51,13 +55,13 @@ const UserList = () => {
                             userList.map((doc, i) => {
                                 // 고유ID, 유저명, 이메일, 전화번호, 신고 누적 횟수, 탈퇴 버튼
                                 return (<tr key={i}>
-                                    <td>{doc.uid ? doc.uid : ""}</td>
-                                    <td>{doc.Name ? doc.Name : ""}</td>
-                                    <td>{doc.Email ? doc.Email : ""}</td>
-                                    <td>{doc.PhoneNumber ? doc.PhoneNumber : ""}</td>
-                                    <td>0</td>
-                                    <td>
-                                        <button>탈퇴</button>
+                                    <td className="userList-td">{doc.uid ? doc.uid : ""}</td>
+                                    <td className="userList-td">{doc.Name ? doc.Name : ""}</td>
+                                    <td className="userList-td">{doc.Email ? doc.Email : ""}</td>
+                                    <td className="userList-td">{doc.PhoneNumber ? doc.PhoneNumber : ""}</td>
+                                    <td className="userList-td">0</td>
+                                    <td className="userList-td">
+                                        <button onClick={deactivate}>⚠️</button>
                                     </td>
                                 </tr>)
                             }
