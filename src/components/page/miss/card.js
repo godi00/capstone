@@ -36,7 +36,7 @@ function Card(props) {
           <Col>
             <Link to={visible && `/${props.cg}/detail/${props.profiles.id}` || !visible && ``} onClick={onClickListener}>
               <div>
-                <img className="carouselImg" src={props.profiles.imgs[0]} width={340} height={350} />
+                <img className="carouselImg" src={props.profiles.imgs[0]} />
                 <div className="carousel-dogInfo">
                   {props.cg=="Missing" && <p>이름: {props.profiles.name}</p>}
                   <p>실종위치: {props.profiles.address}</p>
@@ -51,13 +51,13 @@ function Card(props) {
 
 // 카드 style component
 const ItemStyle = styled.div`
-  width: 365px;
-  padding-top: 3%;
+  width: 95%;
+  max-width: 350px;
+  padding-top: 4.7%;
   padding-bottom: 3%;
-  padding-left: 1.5%;
   margin: 3% auto;
   background-color: #eef5ed;
-  border-radius:8px;
+  border-radius: 8px;
   
   // 비활성화
   ${({ visible }) => {

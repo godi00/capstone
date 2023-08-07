@@ -7,7 +7,7 @@
     display: flex;
     position: relative;
     align-items: center;
-    justify-content: row;
+    
     justify-content: space-between;
 
     margin-right:0.2%;
@@ -49,6 +49,12 @@
         cursor: pointer;
         font-family: 'NanumSquare', sans-serif, bold;
     }
+}
+
+.carousel {
+    width: 98%;
+
+    margin: auto;
 }
 
 .misspage-chart {
