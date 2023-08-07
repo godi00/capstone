@@ -7,7 +7,7 @@ const Stats = () => {
     return (
         <>
             <div className="admin-page">
-                <h3>Stats Page</h3>
+                <h3>통계</h3>
             </div>
         </>
     )
