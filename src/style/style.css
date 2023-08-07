@@ -30,6 +30,10 @@ a {
   height: 100%;
 }
 
+.sub-page {
+  display: flex;
+}
+
 /* Footer */
 .Footer{
   background-color: #DDDDDD;
@@ -52,11 +56,11 @@ a {
   padding: 1.8% 3%;
 }
 
-.missMenu, .findMenu, .hospitalMenu, .searchMenu, .forumMenu{
+.missMenu, .findMenu, .hospitalMenu, .searchMenu, .forumMenu, .admin-menu-nav {
   font-weight: 400;
 }
 
-.missMenu:hover, .findMenu:hover, .hospitalMenu:hover, .searchMenu:hover, .forumMenu:hover{
+.missMenu:hover, .findMenu:hover, .hospitalMenu:hover, .searchMenu:hover, .forumMenu:hover {
   cursor:pointer;
   color:#69a65f;
   transition-property: color;
@@ -71,12 +75,24 @@ a {
   width: 100%;
 }
 
+/* Admin Menu */
+.admin-menu-nav {
+  width: 10%;
+
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
+
+  background-color: #DDDDDD;
+}
+
 /* Miss Menu, Find Menu, Search Menu, Forum Menu */
 .miss-board, .moreinfo-board, .moreinfo2-board, .moreInfo-page, .post-page,
 .UploadPost-page , .find-upload-page, .find-board,
 .search-board, .main-board, .hospital-map, .upload-board,
 .my-info-board, .my-post-board, .my-info-edit-board,
-.seoul-map-board {
+.seoul-map-board, .admin-board {
   width: 100%;
   background-color: #DDDDDD;
 }
@@ -127,6 +143,13 @@ a {
   padding: 0;
   margin: auto;
   
+  background-color: #FFFFFF;
+}
+
+.admin-page {
+  width: 98%;
+  height: auto;
+  margin: auto;
   background-color: #FFFFFF;
 }
 

@@ -6,7 +6,7 @@
 
 // import components
 import { useLocation } from "react-router-dom";
-import { MainMenu } from "../menu/Menu";
+import { AdminMenu, MainMenu } from "../menu/Menu";
 import {FindPage} from './find/FindPage';
 import {MissPage} from './miss/MissPage';
 import {SearchPage} from './search/SearchPage';
@@ -25,11 +25,11 @@ import HospitalMapPage from "./map/hospitals";
 import SeoulMapPage from "./map/seoulMap";
 import { UploadPost } from "./forum/UploadPost";
 import {PostPage} from "./forum/PostPage";
-import AdminPage from "./admin/AdminPage";
+import UserList from "./admin/UserList";
+import Stats from "./admin/Stats";
 
 // import style
 import '../../style/style.css';
-
 
 // Page Template
 const PageTemplate = ({ children }) => (
@@ -38,6 +38,37 @@ const PageTemplate = ({ children }) => (
     {children}
   </div>
 );
+
+const SubTemplate = ({ children }) => (
+  <div className="sub-page">
+    <AdminMenu />
+    {children}
+  </div>
+)
+
+/**
+ * Admin
+ * 관리자 페이지
+ */
+export const AdminUserBoard = () => (
+  <PageTemplate>
+    <SubTemplate>
+      <section className="admin-board">
+        <UserList />
+      </section>
+    </SubTemplate>
+  </PageTemplate>
+)
+
+export const AdminStatsBoard = () => (
+  <PageTemplate>
+    <SubTemplate>
+      <section className="admin-board">
+        <Stats />
+      </section>
+    </SubTemplate>
+  </PageTemplate>
+)
 
 /**
  * Detail
@@ -185,18 +216,6 @@ export const MyUploadingPost = () => (
   <PageTemplate>
     <section className="my-post-board">
       <MyPost />
-    </section>
-  </PageTemplate>
-)
-
-/**
- * Admin
- * 관리자 페이지
- */
-export const AdminBoard = () => (
-  <PageTemplate>
-    <section className="admin-board">
-      <AdminPage />
     </section>
   </PageTemplate>
 )

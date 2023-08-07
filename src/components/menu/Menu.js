@@ -30,3 +30,13 @@ export const MainMenu = () => {
     </nav>
   )
 };
+
+// 관리자 메뉴
+export const AdminMenu = () => {
+  return (
+    <nav className="admin-menu-nav">
+      <NavLink className="userMenu" to="/admin/user">회원관리</NavLink>
+      <NavLink className="statsMenu" to="/admin/stats">통계</NavLink>
+    </nav>
+  )
+}
