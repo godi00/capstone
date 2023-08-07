@@ -121,10 +121,6 @@ a {
   padding-bottom: 5%;  
 }
 
-.Bind{
-  display: grid;
-}
-
 .miss-page, .find-page {
   width: 98%;
   height: 150vh;
