@@ -7,7 +7,7 @@ data class NotificationBody(
 ) {
     data class NotificationData(
         val title: String,
-        val userId : String,
+        val id : String,
         val message: String,
     )
 }

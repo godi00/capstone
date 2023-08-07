@@ -24,7 +24,7 @@ class DetailfindActivity: AppCompatActivity()  {
         binding.FindBtn.visibility = View.INVISIBLE
         binding.deleteBtn2.visibility = View.INVISIBLE
         db = Firebase.firestore
-
+        //여기까진 켜지는데 이후에 안 받아와짐
         val inf = intent.getSerializableExtra("findData") as HashMap<String,Any>
         binding.detailFindAddress.text=inf["address"] as? String
         binding.detailFindAge.text=inf["age"] as? String+"살"

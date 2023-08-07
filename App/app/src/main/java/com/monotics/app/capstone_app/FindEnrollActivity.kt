@@ -117,8 +117,9 @@ class FindEnrollActivity :AppCompatActivity(){
                     .addOnSuccessListener { documentReference->
                         db.collection("Finding").document(documentReference.id).update("id",documentReference.id)
                         Toast.makeText(this,"게시물을 등록했습니다", Toast.LENGTH_SHORT).show()
+                        findMatchingData(enrollinf,documentReference.id)
                     }
-                findMatchingData(enrollinf)
+
             } else if(imageUrls.size>1) { // 사진이 여러장 있을 때
                 val enrollinf= hashMapOf(
                     "address" to address,
@@ -141,8 +142,9 @@ class FindEnrollActivity :AppCompatActivity(){
                     .addOnSuccessListener { documentReference->
                         db.collection("Finding").document(documentReference.id).update("id",documentReference.id)
                         Toast.makeText(this,"게시물을 등록했습니다", Toast.LENGTH_SHORT).show()
+                        findMatchingData(enrollinf,documentReference.id)
                     }
-                findMatchingData(enrollinf)
+
             }
             else{ //사진이 없을 때
                 val imageUrls = ArrayList<String>()
@@ -168,8 +170,8 @@ class FindEnrollActivity :AppCompatActivity(){
                     .addOnSuccessListener { documentReference->
                         db.collection("Finding").document(documentReference.id).update("id",documentReference.id)
                         Toast.makeText(this,"게시물을 등록했습니다", Toast.LENGTH_SHORT).show()
+                        findMatchingData(enrollinf,documentReference.id)
                     }
-                findMatchingData(enrollinf)
             }
             super.onBackPressed()
 
@@ -241,7 +243,7 @@ class FindEnrollActivity :AppCompatActivity(){
         progressBar.progress = progress
     }
     // 등록한 데이터와 50% 이상 일치하는 데이터의 id를 가져오기 위한 함수
-    private fun findMatchingData(enrollData: HashMap<String, Any?>) {
+    private fun findMatchingData(enrollData: HashMap<String, Any?>, docid: String) {
         // 등록한 데이터의 필요요소들을 배열로 가져옴
         val interests = enrollData["farColor1"]
 
@@ -263,7 +265,7 @@ class FindEnrollActivity :AppCompatActivity(){
 
                                 val notificationData = NotificationBody.NotificationData(
                                     title = "비슷한 게시물 업로드!",
-                                    userId = "user123",
+                                    id = docid,
                                     message = "비슷한 게시물이 올라왔습니다 확인해주세요!"
                                 )
 
