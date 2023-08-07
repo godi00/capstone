@@ -53,8 +53,9 @@ function Card(props) {
 const ItemStyle = styled.div`
   width: 95%;
   max-width: 350px;
-  padding-top: 4.7%;
-  padding-bottom: 3%;
+  height: 470px;
+  padding-top: 20px;
+  padding-bottom: 5px;
   margin: 3% auto;
   background-color: #eef5ed;
   border-radius: 8px;
