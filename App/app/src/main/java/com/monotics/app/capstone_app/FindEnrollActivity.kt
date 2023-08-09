@@ -12,13 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.Constants
-import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG
-import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.monotics.app.capstone_app.data.NotificationBody
@@ -245,40 +244,24 @@ class FindEnrollActivity :AppCompatActivity(){
     // 등록한 데이터와 50% 이상 일치하는 데이터의 id를 가져오기 위한 함수
     private fun findMatchingData(enrollData: HashMap<String, Any?>, docid: String) {
         // 등록한 데이터의 필요요소들을 배열로 가져옴
-        val interests = enrollData["farColor1"]
+        val farColor1 = enrollData["farColor1"]
+        val specify = enrollData["specify"]
 
         //요소들이 일치하는 항목의 id를 가져옴
         val query = db.collection("Missing")
-            .whereEqualTo("farColor1", interests)
-        query.get().addOnSuccessListener { querySnapshot: QuerySnapshot? ->
+            .whereEqualTo("farColor1", farColor1)
+            .whereEqualTo("specify",specify)
+
+
+        //데이터 보내면 query로 반환
+        db.collection("Missing").get().addOnSuccessListener { querySnapshot: QuerySnapshot? ->
             if (querySnapshot != null) {
                 for (document in querySnapshot.documents) {
                     // 등록한 데이터와 50% 이상 일치하는 데이터의 id 출력
-                    Log.e("kimshin", document["uid"] as String)
-                    var uid = document["uid"] as String
+                    //Log.e("kimshin", document["uid"] as String)
+                    createMatchingQuery(document,enrollData,docid)
 
-                    db.collection("Users").whereEqualTo("uid",uid).get()
-                        .addOnSuccessListener { userQuerySnapshot ->
-                            if (!userQuerySnapshot.isEmpty) {
-                                val userDocument = userQuerySnapshot.documents[0]
-                                val token = userDocument["token"].toString()
-
-                                val notificationData = NotificationBody.NotificationData(
-                                    title = "비슷한 게시물 업로드!",
-                                    id = docid,
-                                    message = "비슷한 게시물이 올라왔습니다 확인해주세요!"
-                                )
-
-                                val notificationBody = NotificationBody(
-                                    to = token,
-                                    priority = "high",
-                                    data = notificationData
-                                )
-                                firebaseViewModel.sendNotification(notificationBody)
-                            }
-                        }
-
-
+                    //var uid = document["uid"] as String
                 }
             }
             else {
@@ -287,6 +270,97 @@ class FindEnrollActivity :AppCompatActivity(){
         }
 
         
+    }
+    //조건 만드는 함수
+    private fun createMatchingQuery(
+        document: DocumentSnapshot,
+        enrollData: HashMap<String, Any?>,
+        docid: String
+    ) {
+        //비교할 데이터
+        val fc1 = document["farColor1"]
+        val fc2 = document["farColor2"]
+        val ad = document["address"]
+        val ag = document["age"]
+        val dt = document["date"]
+        val gd = document["gender"]
+        val sp = document["specify"]
+
+        //등록할 데이터
+        val farColor1 = enrollData["farColor1"]
+        val farColor2 = enrollData["farColor2"]
+        val address = enrollData["address"]
+        val age = enrollData["age"]
+        val date = enrollData["date"]
+        val gender = enrollData["gender"]
+        val specify = enrollData["specify"]
+        var sum = 0
+        val list = ArrayList<String>()
+        val emptylist = ArrayList<String>()
+
+        //요소들이 일치하는 항목의 id를 가져옴
+        if(farColor1!=null) {
+           if(fc1==farColor1){
+               sum+=1
+           }
+        }
+        if(farColor2!=null) {
+            if(fc2==farColor2){
+                sum+=1
+            }
+        }
+        if(address!=null) {
+            if(ad==address){
+                sum+=1
+            }
+        }
+        if(age!=null) {
+            if(ag==age){
+                sum+=1
+            }
+        }
+        if(date!=null) {
+            if(dt==date){
+                sum+=1
+            }
+        }
+        if(gender!=null) {
+            if(gd==gender){
+                sum+=1
+            }
+        }
+        if(specify!=null) {
+            if(sp==specify){
+                sum+=1
+            }
+        }
+        
+        //7개의 조건 중 3개 이상 만족한다면 알림 보내기
+        if(sum>=1){
+            val uid = document["uid"]
+            Log.e("kimshin",document["uid"].toString())
+            db.collection("Users").whereEqualTo("uid",uid).get()
+                .addOnSuccessListener { userQuerySnapshot ->
+                    if (!userQuerySnapshot.isEmpty) {
+                        val userDocument = userQuerySnapshot.documents[0]
+                        val token = userDocument["token"].toString()
+
+                        val notificationData = NotificationBody.NotificationData(
+                            title = "비슷한 게시물 업로드!",
+                            id = docid,
+                            message = "비슷한 게시물이 올라왔습니다 확인해주세요!"
+                        )
+
+                        val notificationBody = NotificationBody(
+                            to = token,
+                            priority = "high",
+                            data = notificationData
+                        )
+                        firebaseViewModel.sendNotification(notificationBody)
+                    }
+                }
+        }
+
     }
 
 
