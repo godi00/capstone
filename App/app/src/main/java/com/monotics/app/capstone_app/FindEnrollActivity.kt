@@ -257,8 +257,7 @@ class FindEnrollActivity :AppCompatActivity(){
         db.collection("Missing").get().addOnSuccessListener { querySnapshot: QuerySnapshot? ->
             if (querySnapshot != null) {
                 for (document in querySnapshot.documents) {
-                    // 등록한 데이터와 50% 이상 일치하는 데이터의 id 출력
-                    //Log.e("kimshin", document["uid"] as String)
+                    // 등록한 데이터와 40% 이상 일치하는 데이터의 id 출력
                     createMatchingQuery(document,enrollData,docid)
 
                     //var uid = document["uid"] as String
@@ -295,8 +294,6 @@ class FindEnrollActivity :AppCompatActivity(){
         val gender = enrollData["gender"]
         val specify = enrollData["specify"]
         var sum = 0
-        val list = ArrayList<String>()
-        val emptylist = ArrayList<String>()
 
         //요소들이 일치하는 항목의 id를 가져옴
         if(farColor1!=null) {
@@ -336,7 +333,7 @@ class FindEnrollActivity :AppCompatActivity(){
         }
         
         //7개의 조건 중 3개 이상 만족한다면 알림 보내기
-        if(sum>=1){
+        if(sum>=3){
             val uid = document["uid"]
             Log.e("kimshin",document["uid"].toString())
             db.collection("Users").whereEqualTo("uid",uid).get()

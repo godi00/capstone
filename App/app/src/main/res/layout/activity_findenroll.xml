@@ -117,7 +117,7 @@
             android:layout_marginStart="1dp"
             android:background="@color/white"
             android:elevation="3dp"
-            android:hint="ex) 2살"
+            android:hint="ex) 2"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textColor="@color/black"
