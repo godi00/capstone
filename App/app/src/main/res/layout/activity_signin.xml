@@ -214,7 +214,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/titlebar"
         android:layout_width="413dp"
-        android:layout_height="90dp"
+        android:layout_height="70sp"
         android:background="#94C67E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -223,8 +223,8 @@
 
         <ImageView
             android:id="@+id/HomeButton"
-            android:layout_width="48dp"
-            android:layout_height="44dp"
+            android:layout_width="42sp"
+            android:layout_height="42sp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
@@ -240,7 +240,7 @@
             android:layout_height="wrap_content"
             android:text="회원가입"
             android:textColor="#F6F4F4"
-            android:textSize="32sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

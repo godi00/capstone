@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.monotics.app.capstone_app.data.MissData
 import kotlinx.android.synthetic.main.missboard.view.detail_img
 import kotlinx.android.synthetic.main.missboard.view.textImg
+import kotlinx.android.synthetic.main.missitem.view.*
 
 class MissboardAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val db: FirebaseFirestore = Firebase.firestore

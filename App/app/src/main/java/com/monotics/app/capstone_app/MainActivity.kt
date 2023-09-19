@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.text.HtmlCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -141,15 +142,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             profileDataViewModel.address.observeForever {
                 val textView: TextView = findViewById(R.id.address)
-                textView.text= it
+                textView.text= "   "+it
             }
             profileDataViewModel.email.observeForever {
                 val textView: TextView = findViewById(R.id.email)
-                textView.text= it
+                textView.text= "   "+it
             }
             profileDataViewModel.phoneNumber.observeForever {
                 val textView: TextView = findViewById(R.id.phone)
-                textView.text= it
+                textView.text= "   "+it
             }
 
             binding.layoutDrawer.openDrawer(GravityCompat.START)
@@ -211,9 +212,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
     private  fun getImages(): ArrayList<Int>{
         return arrayListOf<Int>(
-            R.drawable.banner1,
-            R.drawable.banner2,
-            R.drawable.banner3
+            R.drawable.banner4,
+            R.drawable.banner5,
+            R.drawable.banner6
         )
     }
     override fun onNewIntent(intent: Intent?) {

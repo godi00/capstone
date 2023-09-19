@@ -14,14 +14,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.monotics.app.capstone_app.data.MissData
-import kotlinx.android.synthetic.main.missitem.view.missaddress
-import kotlinx.android.synthetic.main.missitem.view.missfeature
-import kotlinx.android.synthetic.main.missitem.view.missimg
-import kotlinx.android.synthetic.main.missitem.view.misskakaoid
-import kotlinx.android.synthetic.main.missitem.view.missname
-import kotlinx.android.synthetic.main.missitem.view.missspecify
-import kotlinx.android.synthetic.main.missitem.view.misstime
-import kotlinx.android.synthetic.main.missitem.view.viewbutton
+import kotlinx.android.synthetic.main.missitem.view.*
 
 class MissAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val db: FirebaseFirestore = Firebase.firestore
@@ -67,6 +60,19 @@ class MissAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if(misslist[position].visibled==false){
             viewHolder.viewbutton.setText("*** 찾기 완료 ***")
             viewHolder.missimg.setColorFilter(Color.parseColor("#BF808080"))
+            viewHolder.textview111.setTextColor(Color.GRAY)
+            viewHolder.textview5.setTextColor(Color.GRAY)
+            viewHolder.textview6.setTextColor(Color.GRAY)
+            viewHolder.textview7.setTextColor(Color.GRAY)
+            viewHolder.textview8.setTextColor(Color.GRAY)
+            viewHolder.textview9.setTextColor(Color.GRAY)
+
+            viewHolder.missname.setTextColor(Color.GRAY)
+            viewHolder.missaddress.setTextColor(Color.GRAY)
+            viewHolder.misstime.setTextColor(Color.GRAY)
+            viewHolder.missspecify.setTextColor(Color.GRAY)
+            viewHolder.missfeature.setTextColor(Color.GRAY)
+            viewHolder.misskakaoid.setTextColor(Color.GRAY)
         }else if(misslist[position].visibled==true){
             viewHolder.viewbutton.setText("자세히 보기")
         }

@@ -3,32 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DDDDDD">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enrollboard"
-        android:layout_width="339dp"
-        android:layout_height="530dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="46dp"
+        android:layout_width="370dp"
+        android:layout_height="600dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="1dp"
         android:background="@drawable/button_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlebar">
+        app:layout_constraintTop_toBottomOf="@+id/find_board">
 
         <EditText
             android:id="@+id/feature_edit"
-            android:layout_width="260dp"
+            android:layout_width="270dp"
             android:layout_height="68dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
-            android:hint="ex) 얼굴에 점이 3개정도 있고 발을 절고 있었어요!"
+            android:hint="ex) 얼굴에 점이 3개정도 있고 발을 절고 있었어요"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView31"
             app:layout_constraintTop_toBottomOf="@+id/kakoid_edit"
             tools:ignore="TouchTargetSizeCheck" />
@@ -38,9 +40,10 @@
             android:layout_width="63dp"
             android:layout_height="69dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 특징"
+            android:text="특징"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -50,12 +53,12 @@
 
         <EditText
             android:id="@+id/kakoid_edit"
-            android:layout_width="260dp"
+            android:layout_width="270dp"
             android:layout_height="35dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
-            android:hint="ex)"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textColor="@color/black"
@@ -69,9 +72,10 @@
             android:layout_width="63dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 카톡Id"
+            android:text="카톡ID"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -81,9 +85,10 @@
 
         <EditText
             android:id="@+id/date_edit1"
-            android:layout_width="260dp"
+            android:layout_width="270dp"
             android:layout_height="40dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
             android:hint="ex) 2023년 3월 21일 오후 4시"
@@ -100,9 +105,10 @@
             android:layout_width="63dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 목격       시간"
+            android:text="목격시간"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -112,9 +118,10 @@
 
         <EditText
             android:id="@+id/age_edit1"
-            android:layout_width="260dp"
+            android:layout_width="270dp"
             android:layout_height="40dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
             android:hint="ex) 2"
@@ -131,9 +138,10 @@
             android:layout_width="63dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 추정        나이"
+            android:text="추정 나이"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -143,8 +151,9 @@
 
         <EditText
             android:id="@+id/farcolor_edit1"
-            android:layout_width="130dp"
+            android:layout_width="135dp"
             android:layout_height="45dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
             android:hint="ex) 검정색"
@@ -158,10 +167,10 @@
 
         <EditText
             android:id="@+id/specify_edit"
-            android:layout_width="260dp"
+            android:layout_width="270dp"
             android:layout_height="40dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="12dp"
             android:background="@color/white"
             android:elevation="3dp"
             android:hint="ex) 말티즈"
@@ -175,9 +184,10 @@
 
         <EditText
             android:id="@+id/farcolor_edit"
-            android:layout_width="130dp"
+            android:layout_width="135dp"
             android:layout_height="45dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
             android:hint="ex) 갈색"
@@ -191,9 +201,10 @@
 
         <EditText
             android:id="@+id/gender_edit"
-            android:layout_width="260dp"
+            android:layout_width="270dp"
             android:layout_height="40dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
             android:hint="ex) 수컷"
@@ -210,9 +221,10 @@
             android:layout_width="63dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 성별"
+            android:text="성별"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -225,9 +237,10 @@
             android:layout_width="63dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 목격     장소"
+            android:text="목격 장소"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -240,9 +253,10 @@
             android:layout_width="63dp"
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 모색1,2"
+            android:text="모색1,2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -256,9 +270,9 @@
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
-            android:background="#D2EDC5"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 추정        품종"
+            android:text="추정 품종"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -274,8 +288,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="115dp"
             android:text="목격 등록하기"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.523"
@@ -287,9 +300,10 @@
             android:layout_width="63dp"
             android:layout_height="130dp"
             android:layout_marginStart="16dp"
-            android:background="#D2EDC5"
+            android:layout_marginTop="1dp"
+            android:background="#eef5ed"
             android:gravity="center"
-            android:text="> 목격    사진"
+            android:text="목격사진"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -299,17 +313,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/photo"
-            android:layout_width="260dp"
-            android:layout_height="131dp"
-            android:background="#D1EDE7"
+            android:layout_width="270dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="1dp"
+            android:background="#b4c5b0"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/feature_edit">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="258dp"
+                android:layout_width="270dp"
                 android:layout_height="130dp"
-                android:layout_marginStart="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -329,9 +343,10 @@
 
         <EditText
             android:id="@+id/address_edit"
-            android:layout_width="260dp"
+            android:layout_width="270dp"
             android:layout_height="50dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:elevation="3dp"
             android:hint="ex) 서울특별시"
@@ -343,12 +358,39 @@
             app:layout_constraintTop_toBottomOf="@+id/date_edit1"
             tools:ignore="TouchTargetSizeCheck" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/findimg"
+            android:layout_width="136dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/rect_round"
+            android:text="사진 업로드"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/enroll"
+            android:layout_width="136dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/rect_round"
+            android:text="등록하기"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photo"
+            tools:ignore="TouchTargetSizeCheck" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/titlebar"
         android:layout_width="413dp"
-        android:layout_height="90dp"
+        android:layout_height="70sp"
         android:background="#94C67E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -356,43 +398,37 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/backbtn"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="96dp"
-            app:layout_constraintEnd_toStartOf="@+id/logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/backbutton" />
-
-        <ImageView
             android:id="@+id/logo"
-            android:layout_width="104dp"
-            android:layout_height="60dp"
+            android:layout_width="80sp"
+            android:layout_height="48sp"
             android:layout_marginStart="154dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="155dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img" />
 
         <ImageView
-            android:id="@+id/profile"
-            android:layout_width="70dp"
-            android:layout_height="63dp"
-            android:layout_marginStart="67dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="34dp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/logo"
+            android:id="@+id/backbtn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
+            app:srcCompat="@drawable/backbutton1" />
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="42sp"
+            android:layout_height="42sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -401,39 +437,13 @@
         android:id="@+id/find_board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="9dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="목격 게시판"
         android:textColor="@color/black"
         android:textSize="17sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlebar" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/enroll"
-        android:layout_width="136dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/rect_round"
-        android:text="-> 등록하기"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/findimg"
-        app:layout_constraintTop_toBottomOf="@+id/enrollboard"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/findimg"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/rect_round"
-        android:text="사진 업로드"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enrollboard" />
+        app:layout_constraintTop_toBottomOf="@+id/titlebar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

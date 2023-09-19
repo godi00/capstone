@@ -14,14 +14,8 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.monotics.app.capstone_app.data.FindData
-import kotlinx.android.synthetic.main.finditem.view.FindImg
-import kotlinx.android.synthetic.main.finditem.view.findaddress
-import kotlinx.android.synthetic.main.finditem.view.findcolor
-import kotlinx.android.synthetic.main.finditem.view.findcolor2
-import kotlinx.android.synthetic.main.finditem.view.findfeature
-import kotlinx.android.synthetic.main.finditem.view.findtuploadime
-import kotlinx.android.synthetic.main.finditem.view.viewbutton2
-import kotlinx.android.synthetic.main.missitem.view.viewbutton
+import kotlinx.android.synthetic.main.finditem.view.*
+import kotlinx.android.synthetic.main.missitem.view.*
 
 class FindAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val db: FirebaseFirestore = Firebase.firestore
@@ -67,6 +61,17 @@ class FindAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if(findlist[position].visibled==false){
             viewHolder.viewbutton2.setText("*** 찾기 완료 ***")
             viewHolder.FindImg.setColorFilter(Color.parseColor("#BF808080"))
+            viewHolder.textview2.setTextColor(Color.GRAY)
+            viewHolder.textview3.setTextColor(Color.GRAY)
+            viewHolder.textview4.setTextColor(Color.GRAY)
+            viewHolder.textview100.setTextColor(Color.GRAY)
+            viewHolder.textview.setTextColor(Color.GRAY)
+
+            viewHolder.findtuploadime.setTextColor(Color.GRAY)
+            viewHolder.findcolor.setTextColor(Color.GRAY)
+            viewHolder.findcolor2.setTextColor(Color.GRAY)
+            viewHolder.findaddress.setTextColor(Color.GRAY)
+            viewHolder.findfeature.setTextColor(Color.GRAY)
         }
         else if(findlist[position].visibled==true){
             viewHolder.viewbutton2.setText("자세히 보기")

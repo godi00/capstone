@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/titlebar"
         android:layout_width="413dp"
-        android:layout_height="90dp"
+        android:layout_height="70sp"
         android:background="#94C67E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -17,43 +17,37 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/backbtn"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="96dp"
-            app:layout_constraintEnd_toStartOf="@+id/logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/backbutton" />
-
-        <ImageView
             android:id="@+id/logo"
-            android:layout_width="104dp"
-            android:layout_height="60dp"
+            android:layout_width="80sp"
+            android:layout_height="48sp"
             android:layout_marginStart="154dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="155dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img" />
 
         <ImageView
-            android:id="@+id/profile"
-            android:layout_width="70dp"
-            android:layout_height="63dp"
-            android:layout_marginStart="67dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="34dp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/logo"
+            android:id="@+id/backbtn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
+            app:srcCompat="@drawable/backbutton1" />
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="42sp"
+            android:layout_height="42sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="23dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -62,11 +56,12 @@
         android:id="@+id/forumenrollBtn"
         android:layout_width="110dp"
         android:layout_height="29dp"
-        android:layout_marginStart="275dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
         android:background="@drawable/rect_round"
-        android:text=" -> 등록하기"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="등록하기"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,28 +71,41 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="35dp"
-        android:background="#F2F3F2"
+        android:background="@drawable/rect_round4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView67">
 
-        <EditText
-            android:id="@+id/enroll_content"
-            android:layout_width="250dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="318dp"
+            android:layout_height="338dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="16dp"
             android:background="@color/white"
-            android:ems="10"
-            android:gravity="top|left"
-            android:inputType="text|textEmailAddress|textMultiLine"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView70"
-            app:layout_constraintTop_toBottomOf="@+id/enroll_user" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView70">
+
+            <EditText
+                android:id="@+id/enroll_content"
+                android:layout_width="294dp"
+                android:layout_height="314dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:gravity="top|left"
+                android:inputType="text|textEmailAddress|textMultiLine"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/enroll_user"
@@ -107,7 +115,7 @@
             android:layout_marginTop="16dp"
             android:background="@color/white"
             android:ems="10"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:hint="익명"
             android:inputType="text"
             android:textColor="@color/black"
@@ -122,9 +130,9 @@
             android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:background="#D2EDC5"
+            android:background="#b4c5b0"
             android:gravity="center"
-            android:text="> 내용"
+            android:text="내용"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -138,9 +146,9 @@
             android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:background="#D2EDC5"
+            android:background="#b4c5b0"
             android:gravity="center"
-            android:text="> 작성자"
+            android:text="작성자"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -154,9 +162,9 @@
             android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:background="#D2EDC5"
+            android:background="#b4c5b0"
             android:gravity="center"
-            android:text="> 제목"
+            android:text="제목"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -172,6 +180,7 @@
             android:layout_marginTop="16dp"
             android:background="@color/white"
             android:ems="10"
+            android:gravity="center"
             android:inputType="text"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -184,13 +193,13 @@
         android:id="@+id/textView67"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
         android:text="글 등록하기"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlebar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
