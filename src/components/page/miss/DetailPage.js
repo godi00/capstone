@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
+import Card from './card';
 
 // import about firebase
 import { db, auth } from '../../../firebase';
@@ -55,21 +56,23 @@ export const DetailPage = (props) => {
         });
     };
 
-    // 상세 페이지 내 사진 carousel 설정
+    // Carousel 설정
+    const settings = {
+        dots: true,
+        autoplay: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+        lazyLoad: true,
+        dotsClass: 'dots'
+    };
+
+    // 상세 페이지 내 사진 carousel
     const DetailCarousel = () => {
-        window.scrollTo({ top: 0 });
-        const settings = {
-            dots: true,
-            autoplay: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true,
-            arrows: false,
-            lazyLoad: true,
-            dotsClass: 'dots'
-        };
-    
+        // window.scrollTo({ top: 0 });
+
         return (
             <>
             <Slider {...settings}>
@@ -81,20 +84,17 @@ export const DetailPage = (props) => {
         );
     };
 
-    const uploaderHandler = (event) => {
-        // event.preventDefault();
-        setIsOpen((e) => !e);
-    }
-
     // 글 올린 사용자 정보
     const UploaderInfo = () => {
         return (
             <>
                 <br />
                 <div>
-                    <button className='ul-btn' type="button" onClick={uploaderHandler}>{isOpen ? "▼ 게시자 정보 닫기" : "▲ 게시자 정보 열기"}</button>
+                    <button className='ul-btn' type="button" onClick={() => {
+                        setIsOpen((e) => !e);
+                    }}>{isOpen ? "▼  게시자 연락처 정보 닫기" : "▲  게시자 연락처 정보 열기"}</button>
                     <br /><br />
-                    {isOpen && ((uploader != null) ? (
+                    {isOpen && ((uploader.length > 0) ? (
                         <>
                             <p>email: {uploader[0].Email}</p>
                             <p>연락처: {uploader[0].PhoneNumber}</p>
@@ -105,6 +105,25 @@ export const DetailPage = (props) => {
                         </>
                     ))}
                 </div>
+            </>
+        )
+    }
+
+    // 유사한 게시글
+    // cg == Missing : 실종 게시글에서 목격 게시글 비교
+    // cg == Finding : 목격 게시글에서 실종 게시글 비교
+    const SimilarContent = (cg) => {
+        // 조건 7개 중 3개 이상 일치하는 게시물 구분
+        // 모색1, 모색2, 주소, 나이, 날짜, 성별, 품종
+
+
+        return (
+            <>
+            <div className="postObj">
+                <Slider {...settings}>
+                    {/* {Array.from(postdata).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={division.current}/>)} */}
+                </Slider>
+            </div>
             </>
         )
     }
@@ -147,7 +166,7 @@ export const DetailPage = (props) => {
                 ...doc.data()
             }));
 
-            console.log(data);
+            // console.log(data);
             setUploader(data);
         };
 
@@ -188,6 +207,8 @@ export const DetailPage = (props) => {
                     <UploaderInfo />
                     {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
                 </div>
+
+                <SimilarContent className="similar-content" cg="Missing" />
             </div>
             </>
         )}
@@ -212,6 +233,8 @@ export const DetailPage = (props) => {
                 <UploaderInfo />
                 {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
                 </div>
+
+                <SimilarContent className="similar-content" cg="Finding" />
             </div>
         )}
         <br/><br/><br/>
