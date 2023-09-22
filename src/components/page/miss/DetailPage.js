@@ -109,17 +109,56 @@ export const DetailPage = (props) => {
         )
     }
 
+    const FindSimilarContent = async () => {
+        // 비교하려는 카테고리의 게시글 배열 가져오기
+        const QuerySnapshot = await getDocs(query(collection(db, props.cg), orderBy("uploadTime", "desc")));
+        const data = QuerySnapshot.docs.map((doc, i) => ({
+            ...doc.data()
+        }
+        ));
+
+        // 게시글 개수 크기의 배열 생성 및 초기화
+        const numArr = Array.from({length: data.length}, () => 0);
+
+        // 게시글 순서대로 각 조건들 비교
+        // 비교해서 같으면 count 증가
+        // farColor1, farColor2, address, age, date, gender, specify
+        data.map(function(d, i) {
+            // console.log(profiles[0]);
+            if(profiles[0].farColor1 === d.farColor1) numArr[i] += 1; // 모색1
+            if(profiles[0].farColor2 === d.address) numArr[i] += 1; // 모색2
+            if(profiles[0].address === d.farColor1) numArr[i] += 1; // 주소
+            if(profiles[0].age === d.age) numArr[i] += 1; // 나이
+            if(profiles[0].date === d.date) numArr[i] += 1; // 날짜
+            if(profiles[0].gender === d.gender) numArr[i] += 1; // 성별
+            if(profiles[0].specify === d.specify) numArr[i] += 1; // 품종
+        })
+        // console.log(numArr);
+
+        // count가 3 이상인 게시글만 인덱스 도출
+        // 문제: 처음 찾은 하나만 리턴함 다른 방법 찾기
+        const resultArr = numArr.findIndex(n => n > 2);
+        console.log(resultArr);
+
+        // 해당 게시글로만 배열 생성
+
+        // 배열 return
+    }
+
     // 유사한 게시글
     // cg == Missing : 실종 게시글에서 목격 게시글 비교
     // cg == Finding : 목격 게시글에서 실종 게시글 비교
     const SimilarContent = (cg) => {
-        // 조건 7개 중 3개 이상 일치하는 게시물 구분
-        // 모색1, 모색2, 주소, 나이, 날짜, 성별, 품종
+        // 조건 7개 중 3개 이상 일치하는 게시물 도출
+        // Missing
+        FindSimilarContent();
+        // Slider에 띄우기
 
+        // Finding
 
         return (
             <>
-            <div className="postObj">
+            <div className="sc-div">
                 <Slider {...settings}>
                     {/* {Array.from(postdata).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={division.current}/>)} */}
                 </Slider>
