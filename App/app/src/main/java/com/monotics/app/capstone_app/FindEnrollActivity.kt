@@ -297,12 +297,12 @@ class FindEnrollActivity :AppCompatActivity(){
 
         //요소들이 일치하는 항목의 id를 가져옴
         if(farColor1!=null) {
-           if(fc1==farColor1){
+           if(fc1==farColor1||fc1 == farColor2){
                sum+=1
            }
         }
         if(farColor2!=null) {
-            if(fc2==farColor2){
+            if(fc2==farColor2|| fc2 == farColor1){
                 sum+=1
             }
         }
@@ -341,6 +341,7 @@ class FindEnrollActivity :AppCompatActivity(){
                     if (!userQuerySnapshot.isEmpty) {
                         val userDocument = userQuerySnapshot.documents[0]
                         val token = userDocument["token"].toString()
+                        Log.e("kimtoken",token.toString())
 
                         val notificationData = NotificationBody.NotificationData(
                             title = "비슷한 게시물 업로드!",

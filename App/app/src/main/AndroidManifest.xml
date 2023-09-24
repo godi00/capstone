@@ -24,7 +24,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,9 +43,12 @@
         <activity android:name=".ForumActivity"></activity>
         <activity android:name=".SearchActivity"
             android:windowSoftInputMode="adjustNothing"></activity>
-        <activity android:name=".SigninActivity"></activity>
-        <activity android:name=".MissEnrollActivity"></activity>
-        <activity android:name="FindEnrollActivity"></activity>
+        <activity android:name=".SigninActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".MissEnrollActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name="FindEnrollActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name="DetailActivity"></activity>
         <activity android:name="DetailfindActivity"></activity>
         <activity android:name=".ForumEnrollActivity"></activity>
