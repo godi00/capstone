@@ -295,40 +295,56 @@ class FindEnrollActivity :AppCompatActivity(){
         val specify = enrollData["specify"]
         var sum = 0
 
+        var fctrue = false
+        var fc2true = false
+        var adtrue = false
+        var agtrue = false
+        var dttrue = false
+        var gentrue = false
+        var spetrue = false
+
+
         //요소들이 일치하는 항목의 id를 가져옴
         if(farColor1!=null) {
            if(fc1==farColor1||fc1 == farColor2){
                sum+=1
+               fctrue = true
            }
         }
         if(farColor2!=null) {
             if(fc2==farColor2|| fc2 == farColor1){
                 sum+=1
+                fc2true = true
             }
         }
         if(address!=null) {
             if(ad==address){
                 sum+=1
+                adtrue = true
             }
         }
         if(age!=null) {
             if(ag==age){
                 sum+=1
+                agtrue = true
             }
         }
         if(date!=null) {
             if(dt==date){
                 sum+=1
+                dttrue = true
             }
         }
         if(gender!=null) {
             if(gd==gender){
                 sum+=1
+                gentrue =true
             }
         }
         if(specify!=null) {
             if(sp==specify){
                 sum+=1
+                spetrue = true
             }
         }
         
@@ -342,11 +358,34 @@ class FindEnrollActivity :AppCompatActivity(){
                         val userDocument = userQuerySnapshot.documents[0]
                         val token = userDocument["token"].toString()
                         Log.e("kimtoken",token.toString())
-
+                        var feature = ""
+                        
+                        if(fctrue == true){
+                            feature +="모색|"
+                        }
+                        if(fc2true == true){
+                            feature +="모색2|"
+                        }
+                        if(adtrue == true){
+                            feature += "장소|"
+                        }
+                        if(agtrue == true){
+                            feature += "특징|"
+                        }
+                        if(dttrue == true){
+                            feature += "시간|"
+                        }
+                        if(gentrue == true){
+                            feature += "성별|"
+                        }
+                        if(spetrue == true){
+                            feature +="품종|"
+                        }
+                        
                         val notificationData = NotificationBody.NotificationData(
                             title = "비슷한 게시물 업로드!",
                             id = docid,
-                            message = "비슷한 게시물이 올라왔습니다 확인해주세요!"
+                            message = "${feature} \n항목이 비슷한 목격 게시물이 올라왔습니다."
                         )
 
                         val notificationBody = NotificationBody(
