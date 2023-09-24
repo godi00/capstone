@@ -21,49 +21,11 @@ const UploadPage = () => {
 
     const Navigate = useNavigate();
     var submit = true;
-    //var img = 1;
 
 
     useEffect(() => {
 		setDateAttr();
 	}, []);
-
-
-
-    // function wait(sec) {
-    //     let start = Date.now(), now = start;
-    //     while (now - start < sec * 1000) {
-    //         now = Date.now();
-    //     }
-    // }
-
-
-    // useEffect(()=>{
-    // const uploadFile= async(file, i) => {
-    //         const storageRef = ref(storage, file.name);
-    //         await uploadBytes(storageRef, file).then(async(snapshot) => {
-    //             await getDownloadURL(snapshot.ref).then((url) => {
-    //                 Imgs[i] = url;
-    //                 console.log(url);
-    //             });
-    //         });
-    //     };
-    //     files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
-    // }, [files]);
-
-    // const fileUpload = ()=>{
-    //     const uploadFile= (file, i) => {
-    //         const storageRef = ref(storage, file.name);
-    //         uploadBytes(storageRef, file).then((snapshot) => {
-    //             getDownloadURL(snapshot.ref).then((url) => {
-    //                 Imgs[i] = url;
-    //                 console.log(url);
-    //             });
-    //         });
-    //     };
-    //     files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
-    // }
-        
 
 
     const handleInput = (e) => {
@@ -75,30 +37,18 @@ const UploadPage = () => {
     const handler = (e) =>{
         e.preventDefault();
 
-        if(!submit) return 0;
+        if(!submit) return 0;   // 이미 업로드 버튼을 눌렀으면 다시 실행되지 못하도록
         
-        if(files[0]==null){
+        if(files[0]==null){     // 사진을 필수로 등록하도록
             alert("사진을 등록해주세요");
             return 0;
         }
         submit = false;
-
-        //fileUpload();
-        //wait(5);
-
-        // if(Imgs[files.length-1] == null){
-        //     //console.log(files.length-1);
-        //     while(Imgs[files.length-1] == null){
-        //         console.log(Imgs);
-        //         wait(1);
-        //     }
-        // }
         
-        uploadfunc();
+        uploadfunc();   //firebase에 사진업로드, user업데이트 등
         
         alert("등록되었습니다.");
         Navigate("/miss");
-        //location.reload();
     }
 
 

@@ -75,14 +75,15 @@ const FindUploadPage = () => {
         }
         submit = false;
 
-        //console.log("Imgs:", Imgs);
+        uploadfunc();
+        
+        alert("등록되었습니다");
+        Navigate("/find");
+    }
 
-        // if(Imgs[files.length-1] == null){
-        //     console.log(files.length-1);
-        //     while(Imgs[files.length-1] == null)
-        //         wait(1);
-        // }
 
+
+    const uploadfunc = async () => {
         const uploadPromises = Array.from(files).map((file) => {
             return new Promise((resolve) => {
                 const storageRef = ref(storage, file.name);
@@ -131,9 +132,6 @@ const FindUploadPage = () => {
                 finding: [docRef.id]
             });
         }
-        
-        alert("등록되었습니다");
-        Navigate("/find");
     }
 
 
@@ -249,14 +247,6 @@ const FindUploadPage = () => {
                     <label className="input-file-btn" for="input-file">
                         </label>
                     <input type="file" multiple accept='image/*' onChange={(e)=>setFiles(e.target.files)}/>
-                    {/* <form action="/target" class="dropzone" id="myDropzone"></form>
-                    <script>
-                        Dropzone.discover();
-                        Dropzone.options.myDropzone = {
-                            url: "https://httpbin.org/post",
-                            method: 'post',
-                        };
-                    </script> */}
                     </div>
                 <button className="submit-btn" type="submit" disabled={()=>{files.length!=0? true:false}}>등록하기</button>
             </form>
