@@ -6,6 +6,7 @@
 // import components
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase";
 import Carousel from "../miss/carousel";
 import { PieChart } from "../miss/PieChart";
 import { BarChart } from "../miss/BarChart";
@@ -17,7 +18,11 @@ export const FindPage = () => {
     const navigate = useNavigate();
 
     const toUpload = () => {
-        navigate(`/find/upload`);  // 업로드 페이지로 이동
+        if(auth.currentUser == null){
+            alert("로그인이 필요한 서비스입니다.");
+            navigate(`/login`);
+        }
+        else{ navigate(`/find/upload`); } // 업로드 페이지로 이동
     }
 
     const toMoreInfo = () => {
@@ -43,7 +48,7 @@ export const FindPage = () => {
                 
                 <div className="findpage-chart">
                     <div className="find-pie">
-                        <p className="find-pie-p1">《 목격된 반려견들이 가족의 품으로 돌아간 비율이 얼마나 될까요? 》</p>
+                        <span className="find-pie-p1">《 가족의 품으로 돌아간 반려견의 비율이 얼마나 될까요? 》</span>
                         <PieChart className="find-pie-chart" cg="Finding" />
                     </div>
                     <div className="find-bar">
