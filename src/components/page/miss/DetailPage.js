@@ -23,6 +23,7 @@ export const DetailPage = (props) => {
     const [profiles, setProfiles] = useState([]); // 가져올 게시글 내용
     const [uploader, setUploader] = useState([]); // 가져온 게시글의 게시자 정보
     const [isOpen, setIsOpen] = useState(false); // toggle 조절
+    const [contentState, setContentState] = useState(true); // 지금 띄워진 정보(사진 옆)
 
     const currUser = auth.currentUser; // 현재 로그인한 유저 정보
 
@@ -84,6 +85,11 @@ export const DetailPage = (props) => {
         );
     };
 
+    // 정보, 유사 게시글 스위칭
+    const ContentHandler = () => {
+        setContentState(!contentState);
+    };
+
     // 글 올린 사용자 정보
     const UploaderInfo = () => {
         return (
@@ -107,7 +113,7 @@ export const DetailPage = (props) => {
                 </div>
             </>
         )
-    }
+    };
 
     // 유사 게시글 배열 생성
     const FindSimilarContent = async () => {
@@ -162,7 +168,8 @@ export const DetailPage = (props) => {
             return []; // 오류 발생 시 빈 배열 반환
         }
     };
-      
+    
+    // 유사 게시글 띄우기
     const SimilarContent = () => {
         const [contentArr, setContentArr] = useState([]); // 비동기 결과를 저장할 상태
       
@@ -191,7 +198,7 @@ export const DetailPage = (props) => {
                     <>
                     <h3>유사한 강아지 게시글을 확인하세요.</h3>
                     <Slider {...settings}>
-                        {Array.from(contentArr).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={category}/>)}
+                        {Array.from(contentArr).map((item, i) => <Card className='detail-card' profiles={item} i={i+1} key={item.id} cg={category} isDetail={true}/>)}
                     </Slider>
                     </>
                 )}
@@ -264,23 +271,33 @@ export const DetailPage = (props) => {
                 </div>
 
                 <div className="detailContent">
-                    <h3>🐶{profiles[0].name}🐶</h3>
-                    <p>실종 위치: {profiles[0].address}</p>
-                    <p>실종 시간: {(profiles[0].date != null) ? `${profiles[0].date.split("T")[0]} ${profiles[0].date.split("T")[1]}` : ""} </p>
-                    <p>종: {profiles[0].specify}</p>
-                    <p>나이: {profiles[0].age}</p>
-                    <p>성별: {profiles[0].gender}</p>
-                    <p>중성화 여부: {profiles[0].neutering}</p>
-                    <p>털색: {profiles[0].farColor1}, {profiles[0].farColor2} </p>
-                    <p>특징: {profiles[0].feature}</p>
-                    <div className="upload-date">
-                        <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
-                    </div>
-                    <UploaderInfo />
-                    {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
+                    {contentState ? (
+                        <>
+                            <h3>🐶{profiles[0].name}🐶</h3>
+                            <p>실종 위치: {profiles[0].address}</p>
+                            <p>실종 시간: {(profiles[0].date != null) ? `${profiles[0].date.split("T")[0]} ${profiles[0].date.split("T")[1]}` : ""} </p>
+                            <p>종: {profiles[0].specify}</p>
+                            <p>나이: {profiles[0].age}</p>
+                            <p>성별: {profiles[0].gender}</p>
+                            <p>중성화 여부: {profiles[0].neutering}</p>
+                            <p>털색: {profiles[0].farColor1}, {profiles[0].farColor2} </p>
+                            <p>특징: {profiles[0].feature}</p>
+                            <div className="upload-date">
+                                <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
+                            </div>
+                            <UploaderInfo />
+                            {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
+                        </>
+                    ) : (
+                        <>
+                            <SimilarContent className='sc-content' />
+                        </>
+                    )}
                 </div>
 
-                <SimilarContent className="similar-content" cg="Missing" />
+                <button type="button" className='switch-btn' onClick={ContentHandler}>{
+                    contentState ? "유사한 강아지 보기" : "강아지 정보 보기"
+                }</button>
             </div>
             </>
         )}
@@ -290,23 +307,35 @@ export const DetailPage = (props) => {
                 <div className="imgs">
                     <DetailCarousel />
                 </div>
+
                 <div className="detailContent">
-                <div className="detailText">
-                    <h3>🐶{profiles[0].address}</h3><p>&ensp;에서 목격했어요</p><h3>🐶</h3></div>
-                <p>품종: {profiles[0].specify}</p>
-                <p>성별: {profiles[0].gender}</p>
-                <p>추정 나이: {profiles[0].age}</p>
-                <p>모색: {profiles[0].farColor1}, {profiles[0].farColor2} </p>
-                <p>목격 시간: {profiles[0].date ? profiles[0].date.split("T")[0] : ""} {profiles[0].date ? profiles[0].date.split("T")[1] : ""}</p>
-                <p>특징: {profiles[0].feature}</p>
-                <div className="upload-date">
-                    <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
-                </div>
-                <UploaderInfo />
-                {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
+                    {contentState ? (
+                        <>
+                            <div className="detailText">
+                            <h3>🐶{profiles[0].address}</h3><p>&ensp;에서 목격했어요</p><h3>🐶</h3></div>
+                            <p>품종: {profiles[0].specify}</p>
+                            <p>성별: {profiles[0].gender}</p>
+                            <p>추정 나이: {profiles[0].age}</p>
+                            <p>모색: {profiles[0].farColor1}, {profiles[0].farColor2} </p>
+                            <p>목격 시간: {profiles[0].date ? profiles[0].date.split("T")[0] : ""} {profiles[0].date ? profiles[0].date.split("T")[1] : ""}</p>
+                            <p>특징: {profiles[0].feature}</p>
+                            <div className="upload-date">
+                                <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
+                            </div>
+                            <UploaderInfo />
+                            {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
+                        </>
+                    ) : (
+                        <>
+                            <SimilarContent />
+                        </>
+                    )}
+                   
                 </div>
 
-                <SimilarContent className="similar-content" cg="Finding" />
+                <button type="button" className='switch-btn' onClick={ContentHandler}>{
+                    contentState ? "유사한 강아지 보기" : "강아지 정보 보기"
+                }</button>
             </div>
         )}
         <br/><br/><br/>

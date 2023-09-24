@@ -6,13 +6,15 @@
 // import components
 import { Link } from 'react-router-dom';
 import { Col } from 'reactstrap';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // import style
 import styled from 'styled-components';
 import '../../../style/carousel.scss';
 
 function Card(props) {
+  const [isDetail, setIsDetail] = useState(props.profiles.isDetail);
+
   useEffect(() => {
 		mapscript();
 	}, []);
@@ -32,19 +34,40 @@ function Card(props) {
   // cg값에 따라 실종, 목격으로 구분
     return (
       <>
-        <ItemStyle visible={visible}>
-          <Col>
-            <Link to={visible && `/${props.cg}/detail/${props.profiles.id}` || !visible && ``} onClick={onClickListener}>
-              <div>
-                <img className="carouselImg" src={props.profiles.imgs[0]} />
-                <div className="carousel-dogInfo">
-                  {props.cg=="Missing" && <p>이름: {props.profiles.name}</p>}
-                  <p>실종위치: {props.profiles.address}</p>
+        {isDetail ? (
+          <>
+          <ItemStyle2 visible={visible}>
+            <Col>
+              <Link to={visible && `/${props.cg}/detail/${props.profiles.id}` || !visible && ``} onClick={onClickListener}>
+                <div>
+                  <img className="carouselImg" src={props.profiles.imgs[0]} />
+                  <div className="carousel-dogInfo">
+                    {props.cg=="Missing" && <p>이름: {props.profiles.name}</p>}
+                    <p>실종위치: {props.profiles.address}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </Col>
-        </ItemStyle>
+              </Link>
+            </Col>
+          </ItemStyle2>
+          </>
+        ) : (
+          <>
+          <ItemStyle visible={visible}>
+            <Col>
+              <Link to={visible && `/${props.cg}/detail/${props.profiles.id}` || !visible && ``} onClick={onClickListener}>
+                <div>
+                  <img className="carouselImg" src={props.profiles.imgs[0]} />
+                  <div className="carousel-dogInfo">
+                    {props.cg=="Missing" && <p>이름: {props.profiles.name}</p>}
+                    <p>실종위치: {props.profiles.address}</p>
+                  </div>
+                </div>
+              </Link>
+            </Col>
+          </ItemStyle>
+          </>
+        )}
+        
       </>
     );
 };
@@ -54,6 +77,22 @@ const ItemStyle = styled.div`
   width: 95%;
   max-width: 400px;
   height: 470px;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  margin: 3% auto;
+  background-color: #eef5ed;
+  border-radius: 8px;
+  
+  // 비활성화
+  ${({ visible }) => {
+    return visible ? null: `filter: grayscale(100%); opacity: 80%;`;
+  }}
+`;
+
+const ItemStyle2 = styled.div`
+  width: 95%;
+  max-width: 400px;
+  height: 400px;
   padding-top: 20px;
   padding-bottom: 5px;
   margin: 3% auto;

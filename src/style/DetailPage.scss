@@ -62,9 +62,8 @@
         font-family: 'NanumSquare', sans-serif, bold;
     }
 
-    .sc-div {
-        float: left;
-        // position: relative;
+    .sc-content {
+        width: 80%;
     }
 }
 
@@ -79,8 +78,8 @@
     .goBack-btn{
         margin-bottom: 5px;
         margin-left: 80%;
-        margin-top:auto;
-        //margin-right: 2px;
+        margin-top: 0.5%;
+        margin-right: 0.3%;
         width: 150px;
         height: 30px;
         border: none;
@@ -95,14 +94,29 @@
 }
 
 .ul-btn {
-        width: 180px;
-        height: 30px;
-        border: none;
-        border-radius: 8px;
-        background-color: #69a65f;
-        color: white;
-        font-weight: bold;
-        font-size:14px;
-        cursor: pointer;
-        font-family: 'NanumSquare', sans-serif, bold;   
+    width: 180px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: #69a65f;
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    cursor: pointer;
+    font-family: 'NanumSquare', sans-serif, bold;   
+}
+
+.switch-btn {
+    width: 150px;
+    height: 30px;
+    margin-top: 2%;
+    margin-left: 8%;
+    border: none;
+    border-radius: 8px;
+    background-color: #69a65f;
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    cursor: pointer;
+    font-family: 'NanumSquare', sans-serif, bold; 
 }
