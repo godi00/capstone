@@ -283,7 +283,7 @@ export const DetailPage = (props) => {
                             <p>나이: {profiles[0].age}</p>
                             <p>성별: {profiles[0].gender}</p>
                             <p>중성화 여부: {profiles[0].neutering}</p>
-                            <p>털색: {profiles[0].farColor1}, {profiles[0].farColor2} </p>
+                            <p>털색: {profiles[0].farColor1}{profiles[0].farColor2 ? `, ${profiles[0].farColor2}` : ``} </p>
                             <p>특징: {profiles[0].feature}</p>
                             <div className="upload-date">
                                 <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
@@ -319,7 +319,7 @@ export const DetailPage = (props) => {
                             <p>품종: {profiles[0].specify}</p>
                             <p>성별: {profiles[0].gender}</p>
                             <p>추정 나이: {profiles[0].age}</p>
-                            <p>모색: {profiles[0].farColor1}, {profiles[0].farColor2} </p>
+                            <p>모색: {profiles[0].farColor1}{profiles[0].farColor2 ? `, ${profiles[0].farColor2}` : ``} </p>
                             <p>목격 시간: {profiles[0].date ? profiles[0].date.split("T")[0] : ""} {profiles[0].date ? profiles[0].date.split("T")[1] : ""}</p>
                             <p>특징: {profiles[0].feature}</p>
                             <div className="upload-date">
