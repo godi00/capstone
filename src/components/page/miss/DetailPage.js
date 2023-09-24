@@ -107,7 +107,7 @@ export const DetailPage = (props) => {
                         </>
                     ) : (
                         <>
-                            <p>카카오톡 아이디: {profiles[0].kakaoId}</p>
+                            <p>연락처: {profiles[0].kakaoId}</p>
                         </>
                     ))}
                 </div>
@@ -288,8 +288,9 @@ export const DetailPage = (props) => {
                             <div className="upload-date">
                                 <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
                             </div>
+                            <div className='btn-div'>
                             <UploaderInfo className='uploader-info' />
-                            {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
+                            </div>
                         </>
                     ) : (
                         <>
@@ -298,9 +299,13 @@ export const DetailPage = (props) => {
                     )}
                 </div>
 
-                <button type="button" className='switch-btn' onClick={ContentHandler}>{
-                    contentState ? "유사한 강아지 보기" : "강아지 정보 보기"
-                }</button>
+                <div>
+                    <button type="button" className='switch-btn' onClick={ContentHandler}>{
+                        contentState ? "유사한 강아지 보기" : "강아지 정보 보기"
+                    }</button>
+                    {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
+                </div>
+                
             </div>
             </>
         )}
@@ -326,7 +331,6 @@ export const DetailPage = (props) => {
                                 <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
                             </div>
                             <UploaderInfo />
-                            {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
                         </>
                     ) : (
                         <>
@@ -339,6 +343,7 @@ export const DetailPage = (props) => {
                 <button type="button" className='switch-btn' onClick={ContentHandler}>{
                     contentState ? "유사한 강아지 보기" : "강아지 정보 보기"
                 }</button>
+                {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
             </div>
         )}
         <br/><br/><br/>

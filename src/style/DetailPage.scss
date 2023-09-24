@@ -47,11 +47,16 @@
         font-size: 15px;
         color: #69a65f;
         font-family: 'NanumSquare', sans-serif, light;
-      }
+    }
+
+    .btn-div {
+        display: flex;
+    }
 
     .found-btn{
         width: 150px;
         height: 30px;
+        float: right;
         border: none;
         border-radius: 8px;
         background-color: #69a65f;
@@ -60,6 +65,9 @@
         font-size:14px;
         cursor: pointer;
         font-family: 'NanumSquare', sans-serif, bold;
+        margin-right: 4%;
+        margin-top: 2%;
+        margin-bottom: 3%;
     }
 }
 
@@ -92,6 +100,7 @@
 .ul-btn {
     width: 180px;
     height: 30px;
+    float: left;
     border: none;
     border-radius: 8px;
     background-color: #69a65f;
