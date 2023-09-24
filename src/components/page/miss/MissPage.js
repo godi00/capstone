@@ -7,6 +7,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
+import { useState } from 'react';
 import Carousel  from "./carousel";
 import { PieChart } from "./PieChart";
 import { BarChart } from "./BarChart";
@@ -16,6 +17,7 @@ import "../../../style/MissPage.scss";
 
 export const MissPage = () => {
     const navigate = useNavigate();
+    //const [region, setRegion] = useState("서울");
     
     const toUpload = () => {
         if(auth.currentUser == null){
@@ -47,14 +49,15 @@ export const MissPage = () => {
                 <Carousel category={"Missing"} cg={"Missing"}/>
                 
                 <div className="misspage-chart">
+                    <div className="miss-bar">
+                    <span className="miss-bar-p1">《 각 지역마다 실종된 반려견이 얼마나 있을까요? 》</span>
+                        <BarChart className="miss-bar-chart" cg="Missing"/>
+                    </div>
                     <div className="miss-pie">
-                        <p className="miss-pie-p1">《 실종된 반려견들이 가족의 품으로 돌아간 비율이 얼마나 될까요? 》</p>
+                        <p className="miss-pie-p1">《 가족의 품에 돌아간 반려견의 비율이 얼마나 될까요? 》</p>
                         <PieChart className="miss-pie-chart" cg="Missing" />
                     </div>
-                    <div className="miss-bar">
-                        <p className="miss-bar-p1">《 각 자치구 마다 실종된 반려견이 얼마나 있을까요? 》</p>
-                        <BarChart className="miss-bar-chart" cg="Missing" />
-                    </div>
+                    
                 </div>
                 
             </div>

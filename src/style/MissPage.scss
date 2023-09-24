@@ -66,27 +66,31 @@
     
 
     .miss-pie {
-        width: 32%;
-        float: left;
+        width: 23%;
+        height: 30%;
+        float: right;
         background-color: #eef5ed;
-        border-radius: 10px 0px 0px 10px;
+        border-radius: 0px 10px 10px 0px;
 
         .miss-pie-p1 {
-            padding-top: 2%;
-            padding-left: 5.4%;
+            padding-top: 5%;
             color: #376330;
         }
     }
 
     .miss-bar {
-        width: 68%;
-        float: right;
+        padding-top: 2%;
+        width: 77%;
+        height: 30%;
+        float: left;
         background-color: #eef5ed;
-        border-radius: 0px 10px 10px 00px;
+        border-radius: 10px 0px 0px 10px;
 
         .miss-bar-p1 {
+            //float: center;
             padding-top: 1%;
-            padding-left: 30%;
+            //padding-right: 0%;
+            padding-left: 40%;
             color: #376330;
         }
     }

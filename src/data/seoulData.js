@@ -2089,8 +2089,8 @@ name : '시흥시',
 	new kakao.maps.LatLng( 37.3545641018716	, 126.70091249682623	),
 	new kakao.maps.LatLng( 37.4175729396995	, 126.75446499571434	)]
 }, {			
-name : '안산시 상록구',			
- path : [			
+name : '안산시',			
+path : [			
 	new kakao.maps.LatLng( 37.3594855140951	, 126.89637748299664	),
 	new kakao.maps.LatLng( 37.3345148270002	, 126.88158607840964	),
 	new kakao.maps.LatLng( 37.3343928309754	, 126.88179326587874	),
@@ -2238,38 +2238,6 @@ name : '안산시 상록구',
 	new kakao.maps.LatLng( 37.2740987752527	, 126.86313462075802	),
 	new kakao.maps.LatLng( 37.2980434196555	, 126.81680240633523	),
 	new kakao.maps.LatLng( 37.3041686005826	, 126.82440224697783	),
-	new kakao.maps.LatLng( 37.3036246565869	, 126.83450985230903	),
-	new kakao.maps.LatLng( 37.3627864557048	, 126.8414678460737	),
-	new kakao.maps.LatLng( 37.3647594801446	, 126.8481126127557	),
-	new kakao.maps.LatLng( 37.3647669734509	, 126.84824223502525	),
-	new kakao.maps.LatLng( 37.3643244522436	, 126.86833114613415	),
-	new kakao.maps.LatLng( 37.3643785768051	, 126.86838749287489	),
-	new kakao.maps.LatLng( 37.3693767440565	, 126.87431679621756	),
-	new kakao.maps.LatLng( 37.3695482161312	, 126.87457615958277	),
-	new kakao.maps.LatLng( 37.3774661213746	, 126.8812467585407	),
-	new kakao.maps.LatLng( 37.3774214677105	, 126.88136245969461	),
-	new kakao.maps.LatLng( 37.3594855140951	, 126.89637748299664	)]
-}, {			
-name : '안산시 단원구',			
- path : [			
-    new kakao.maps.LatLng( 37.1918088575158,	126.6507593	),
-    new kakao.maps.LatLng( 37.191457134606594, 	126.6506645	),
-    new kakao.maps.LatLng( 37.233984726784406, 	126.6233705	),
-    new kakao.maps.LatLng( 37.213995310513376, 	126.5441798	),
-    new kakao.maps.LatLng( 37.25630440073388, 	126.5636128	),
-    new kakao.maps.LatLng( 37.27856738491536, 	126.569377	),
-    new kakao.maps.LatLng( 37.25619998027363, 	126.6175133	),
-    new kakao.maps.LatLng( 37.22509327877958, 	126.6502796	),
-    new kakao.maps.LatLng( 37.19180885751583, 	126.6507593	)]
-}, {			
-    name : '안산시 단원구',			
-     path : [			
-    new kakao.maps.LatLng( 37.363174823134365, 	126.8292983	),
-    new kakao.maps.LatLng( 37.36296791797485, 	126.8295245	),
-    new kakao.maps.LatLng( 37.36278645570483, 	126.8414678	),
-    new kakao.maps.LatLng( 37.303624656586926, 	126.8345099	),
-    new kakao.maps.LatLng( 37.30416860058266, 	126.8244022	),
-    new kakao.maps.LatLng( 37.29804341965559, 	126.8168024	),
     new kakao.maps.LatLng( 37.29340677267749, 	126.7893646	),
     new kakao.maps.LatLng( 37.315366335306635, 	126.7246846	),
     new kakao.maps.LatLng( 37.32968297806942, 	126.7485639	),
@@ -2289,7 +2257,19 @@ name : '안산시 단원구',
     new kakao.maps.LatLng( 37.36182811345061, 	126.8204628	),
     new kakao.maps.LatLng( 37.36568994134219, 	126.8240659	),
     new kakao.maps.LatLng( 37.36590650651723, 	126.8242798	),
-    new kakao.maps.LatLng( 37.363174823134365, 	126.8292983	)]
+
+	new kakao.maps.LatLng( 37.363174823134365, 	126.8292983	),
+    new kakao.maps.LatLng( 37.36296791797485, 	126.8295245	),
+    new kakao.maps.LatLng( 37.36278645570483, 	126.8414678	),
+
+	new kakao.maps.LatLng( 37.3647669734509	, 126.84824223502525	),
+	new kakao.maps.LatLng( 37.3643244522436	, 126.86833114613415	),
+	new kakao.maps.LatLng( 37.3643785768051	, 126.86838749287489	),
+	new kakao.maps.LatLng( 37.3693767440565	, 126.87431679621756	),
+	new kakao.maps.LatLng( 37.3695482161312	, 126.87457615958277	),
+	new kakao.maps.LatLng( 37.3774661213746	, 126.8812467585407	),
+	new kakao.maps.LatLng( 37.3774214677105	, 126.88136245969461	),
+	new kakao.maps.LatLng( 37.3594855140951	, 126.89637748299664	)]
 }, {			
 name : '화성시',			
  path : [			

@@ -10,93 +10,91 @@ import { VictoryChart, VictoryBar, VictoryAxis } from 'victory';
 // import about firebase
 import { db } from '../../../firebase';
 import { collection, query, getDocs } from 'firebase/firestore';
+import locationData from "../../../data/seoulData.js";
 
 export const BarChart = (props) => {
-    // 각 자치구에 대한 상태 변수
-    const [district, setDistrict] = useState([
-        {quarter: "강남구", earnings: 0}, {quarter: "강동구", earnings: 0},
-        {quarter: "강북구", earnings: 0}, {quarter: "강서구", earnings: 0},
+    const [district, setDistrict] = useState([]);
+    const [region, setRegion] = useState("서울");
 
-        {quarter: "관악구", earnings: 0}, {quarter: "광진구", earnings: 0},
-        {quarter: "구로구", earnings: 0}, {quarter: "금천구", earnings: 0},
-
-        {quarter: "노원구", earnings: 0}, {quarter: "도봉구", earnings: 0},
-        {quarter: "동대문구", earnings: 0}, {quarter: "동작구", earnings: 0},
-
-        {quarter: "마포구", earnings: 0}, {quarter: "서대문구", earnings: 0},
-        {quarter: "서초구", earnings: 0}, {quarter: "성동구", earnings: 0},
-
-        {quarter: "성북구", earnings: 0}, {quarter: "송파구", earnings: 0},
-        {quarter: "양천구", earnings: 0}, {quarter: "영등포구", earnings: 0},
-
-        {quarter: "용산구", earnings: 0}, {quarter: "은평구", earnings: 0},
-        {quarter: "종로구", earnings: 0}, {quarter: "중구", earnings: 0},
-        {quarter: "중랑구", earnings: 0}
-    ]);
-
-    // useEffect
     useEffect(() => {
         const fetchData = async () => {
+            var initialData;
+            if (region === "서울") initialData = locationData.filter((location) => location.name.endsWith("구"));
+            else if (region === "경기") initialData = locationData.filter((location) => location.name.endsWith("시"));
+            
+            const initialDistrictData = initialData.map((location) => ({ quarter: location.name, earnings: 0 }));
+            //setDistrict(initialDistrictData);
+
             // 카테고리의 전체 문서를 가져옴
             const QuerySnapshot = await getDocs(query(collection(db, props.cg)));
             const data = QuerySnapshot.docs.map((doc) => ({
                 ...doc.data()
             }));
 
-            // data를 돌며 각 주소의 자치구와 일치하는 district의 earnings 업데이트
-            Array.from(data).map((d) => {
-                district.map((d2) => {
-                    if(d.address.split(' ')[1] == d2.quarter) {
-                        setDistrict((prevDistrict) => {
-                            return prevDistrict.map((d2) => {
-                                if(d.address != null) {
-                                    if (d.address.split(' ')[1] === d2.quarter) {
-                                        return { ...d2, earnings: d2.earnings + 1 };
-                                    }
-                                    return d2;
-                                }
-                            });
-                        });
-                    }
-                });
-            });
+            // 데이터를 가공하여 업데이트된 district를 생성
+            const updatedDistrict = initialDistrictData.reduce((updatedDistrict, d2) => {
+                const matchingDataCount = data.filter((d) => d.address != null && d.address.split(' ')[1] === d2.quarter).length;
+                if (matchingDataCount > 0) {
+                    updatedDistrict.push({ ...d2, earnings: d2.earnings + matchingDataCount });
+                } else {
+                    updatedDistrict.push(d2);
+                }
+                return updatedDistrict;
+            }, []);
+
+            // 업데이트된 district로 상태 업데이트
+            setDistrict(updatedDistrict);
+            // console.log(region);
+            // console.log(district);
         };
 
         // fetch
         fetchData();
-    }, []);
-    
+    }, [region]);
+
+    useEffect(() => {
+        console.log(region);
+        console.log(district);
+    }, [region, district]);
+
     return (
         <>
-            <VictoryChart
-                domain={{x: [1, 25], y: [0, 16]}}
-                domainPadding={{ x: 10 }}
-                width={700}
-                height={278.3}
-                style={{
-                    background: {fill:'#eef5ed'}
-                }}
-            >
+            
+            <select onChange={(e) => { setRegion(e.target.value) }} style={{ float: "right", marginRight: 10 + 'em' }}>
+                <option selected value="서울">서울</option>
+                <option value="경기">경기</option>
+            </select>
+            {district.length > 0 ? (
+                <VictoryChart
+                    domain={{ x: [1, 25], y: [0, 16] }}
+                    padding={33}
+                    domainPadding={{ x: 10 }}
+                    width={800}
+                    height={300}
+                    style={{
+                        background: { fill: '#eef5ed' }
+                    }}
+                >
                 <VictoryAxis // x축
                     style={{
-                        width: '2000px',
+                        width: '150px',
                         tickLabels: {
-                          fontFamily: 'NanumSquare',
-                          fontSize: 7.5,
-                          fontWeight: 500,
-                          fill: '#376330',
+                        fontFamily: 'NanumSquare',
+                        fontSize: 7,
+                        fontWeight: 500,
+                        fill: '#376330',
                         },
                     }}
                 />
                 <VictoryAxis // y축
                     dependentAxis
                     style={{
-                      tickLabels: {
+                        tickLabels: {
                         fontFamily: 'NanumSquare',
                         fontSize: 10,
                         fontWeight: 400,
                         fill: '#376330',
-                      },
+                        },
                     }}
                 />
                 <VictoryBar
@@ -104,17 +102,16 @@ export const BarChart = (props) => {
                     x="quarter"
                     y="earnings"
 
-                    animate={{
-                        duration: 800
-                    }}
+                    animate={{ duration: 500 }}
 
                     style={{
-                        data: {
-                            fill:"#376330"
-                        }
+                        data: { fill:"#376330" }
                     }}
                 />
             </VictoryChart>
+            ) : (
+                <p>Loading...</p>
+            )}
         </>
     )
 }

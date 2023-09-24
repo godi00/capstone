@@ -10,7 +10,7 @@ import DaumPostcode from "react-daum-postcode";
 import { addDoc, collection, doc, updateDoc, getDoc } from "@firebase/firestore";
 import { db, storage, auth } from "../../../firebase.js";
 import { ref, uploadBytesResumable, uploadBytes, getDownloadURL } from "firebase/storage";
-//import Dropzone from 'react-dropzone'
+
 
 const UploadPage = () => {
     const [data, setData] = useState({});
@@ -21,36 +21,11 @@ const UploadPage = () => {
 
     const Navigate = useNavigate();
     var submit = true;
-    //var img = 1;
 
 
     useEffect(() => {
 		setDateAttr();
 	}, []);
-
-
-
-    function wait(sec) {
-        let start = Date.now(), now = start;
-        while (now - start < sec * 1000) {
-            now = Date.now();
-        }
-    }
-
-
-    useEffect(()=>{
-    const uploadFile= async(file, i) => {
-            const storageRef = ref(storage, file.name);
-            await uploadBytes(storageRef, file).then(async(snapshot) => {
-                await getDownloadURL(snapshot.ref).then((url) => {
-                    Imgs[i] = url;
-                    console.log(url);
-                });
-            });
-        };
-        files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
-    }, [files]);
-        
 
 
     const handleInput = (e) => {
@@ -59,53 +34,73 @@ const UploadPage = () => {
         setData({ ...data, [id]: value });
     };
 
-    const handler = async(e) =>{
+    const handler = (e) =>{
         e.preventDefault();
 
-        if(!submit) return 0;
+        if(!submit) return 0;   // 이미 업로드 버튼을 눌렀으면 다시 실행되지 못하도록
         
-        if(files[0]==null){
+        if(files[0]==null){     // 사진을 필수로 등록하도록
             alert("사진을 등록해주세요");
             return 0;
         }
         submit = false;
+        
+        uploadfunc();   //firebase에 사진업로드, user업데이트 등
+        
+        alert("등록되었습니다.");
+        Navigate("/miss");
+    }
 
-        if(Imgs[files.length-1] == null){
-            console.log(files.length-1);
-            while(Imgs[files.length-1] == null)
-                wait(1);
+
+    const uploadfunc = async() =>{
+        const uploadPromises = Array.from(files).map((file) => {
+            return new Promise((resolve) => {
+                const storageRef = ref(storage, file.name);
+                uploadBytesResumable(storageRef, file)
+                    .then((snapshot) => getDownloadURL(snapshot.ref))
+                    .then((url) => {
+                        resolve(url);
+                    });
+            });
+        });
+
+        try {
+            const uploadedUrls = await Promise.all(uploadPromises);
+            Imgs.push(...uploadedUrls);
+            console.log("Imgs:", Imgs);
+
+            var currUser = auth.currentUser.uid;
+            // ... 나머지 코드 ...
+            submit = true; // 이제 submit을 허용
+        } catch (error) {
+            console.error("이미지 업로드 중 오류 발생:", error);
         }
-        
-        const currUser = auth.currentUser.uid;
-        
-        var time = new Date();
-        const docRef = await addDoc(collection(db, "Missing"), {
+
+
+        var currUser = auth.currentUser.uid;
+
+        var time = new Date()
+        const docRef = await addDoc(collection(db, "Missing"), {    //해당게시글 정보를 finding컬렉션에 추가
             ...data,
             imgs: Imgs, 
             uploadTime: time,
             visibled: true,
             uid: currUser
         });
-        await updateDoc(docRef, {id: docRef.id});   //현재 문서의 id를 필드에 다시 추가
+        await updateDoc(docRef, {id: docRef.id}); 
         
-        
-        let document = await getDoc(doc(db, "Users", currUser));
-        var arr = document.data().missing;
 
+        let document = await getDoc(doc(db, "Users", currUser));    //user컬렉션에 해당user가 등록한 게시글 추가
+        var arr = document.data().finding;
         if(arr != null){
             await updateDoc(doc(db, "Users", currUser), {
                 missing: [...arr, docRef.id]
             });
-        }
-        else{
+        }else{
             await updateDoc(doc(db, "Users", currUser), {
                 missing: [docRef.id]
             });
         }
-        
-        alert("등록되었습니다.");
-        Navigate("/miss");
-        //location.reload();
     }
 
 
@@ -130,7 +125,9 @@ const UploadPage = () => {
     //날짜선택 시 오늘 이후날짜 선택못하도록 제한하는 함수
     const setDateAttr = () => {
         let dateElement = document.getElementById('date');
+        console.log(dateElement);
         let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
+        console.log(date);
         //dateElement.value = date;
         dateElement.setAttribute("max", date);
     }
