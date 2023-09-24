@@ -70,7 +70,8 @@ export const BarChart = (props) => {
                     padding={33}
                     domainPadding={{ x: 10 }}
                     width={800}
-                    height={280}
+                    height={240}
+                    margin-bottom={50}
                     style={{
                         background: { fill: '#eef5ed' }
                     }}
