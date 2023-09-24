@@ -48,11 +48,11 @@ export const PieChart = (props) => {
 
     return (
         <>
-            <svg width={400} height={330} >
+            <svg width={400} height={339} >
 
                 {/* #93c58c | #69a65f | #376330 */}
 
-                <circle cx={200} cy={200} r={85} fill="#376330" />
+                <circle cx={180} cy={190} r={85} fill="#376330" />
 
                 <VictoryPie
                     data={ data }
@@ -72,9 +72,15 @@ export const PieChart = (props) => {
                     ]}
                     
                     padding={{
-                        top: 50, bottom: 50
+                        top: 50, bottom: 70, right: 40
                     }}
 
+                    margin={{
+                        bottom: 50
+                    }}
+
+
+                    
                     standalone={false}
                     width={400}
                     height={400}
@@ -96,8 +102,8 @@ export const PieChart = (props) => {
                     textAnchor="inherit" // 가운데 정렬
                     verticalAnchor="inherit"  // 가운데 정렬
                     
-                    x={125}  // 원의 x 좌표
-                    y={200}  // 원의 y 좌표
+                    x={104}  // 원의 x 좌표
+                    y={187}  // 원의 y 좌표
 
                     style={{
                         x: 250,

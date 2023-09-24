@@ -50,7 +50,7 @@ export const MissPage = () => {
                 
                 <div className="misspage-chart">
                     <div className="miss-bar">
-                    <span className="miss-bar-p1">《 각 지역마다 실종된 반려견이 얼마나 있을까요? 》</span>
+                        <span className="miss-bar-p1">《 각 지역마다 실종된 반려견이 얼마나 있을까요? 》</span>
                         <BarChart className="miss-bar-chart" cg="Missing"/>
                     </div>
                     <div className="miss-pie">
