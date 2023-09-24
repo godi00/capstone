@@ -187,10 +187,14 @@ export const DetailPage = (props) => {
         return (
           <>
             <div className="sc-div">
-                <h3>목격 게시판에 비슷한 강아지가 있어요.</h3>
-                <Slider {...settings}>
-                    {Array.from(contentArr).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={category}/>)}
-                </Slider>
+                {contentArr && contentArr.length > 0 && (
+                    <>
+                    <h3>유사한 강아지 게시글을 확인하세요.</h3>
+                    <Slider {...settings}>
+                        {Array.from(contentArr).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={category}/>)}
+                    </Slider>
+                    </>
+                )}
             </div>
           </>
         );
