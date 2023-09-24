@@ -196,7 +196,6 @@ export const DetailPage = (props) => {
             <div className="sc-div">
                 {contentArr && contentArr.length > 0 && (
                     <>
-                    <h3>유사한 강아지 게시글을 확인하세요.</h3>
                     <Slider {...settings}>
                         {Array.from(contentArr).map((item, i) => <Card className='detail-card' profiles={item} i={i+1} key={item.id} cg={category} isDetail={true}/>)}
                     </Slider>

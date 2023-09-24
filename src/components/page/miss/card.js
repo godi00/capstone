@@ -13,7 +13,9 @@ import styled from 'styled-components';
 import '../../../style/carousel.scss';
 
 function Card(props) {
-  const [isDetail, setIsDetail] = useState(props.profiles.isDetail);
+  const [isDetail, setIsDetail] = useState(props.isDetail);
+
+  console.log(isDetail);
 
   useEffect(() => {
 		mapscript();
@@ -90,12 +92,12 @@ const ItemStyle = styled.div`
 `;
 
 const ItemStyle2 = styled.div`
-  width: 95%;
+  width: 90%;
   max-width: 400px;
   height: 400px;
-  padding-top: 20px;
+  padding-top: 2px;
   padding-bottom: 5px;
-  margin: 3% auto;
+  margin: 1% auto;
   background-color: #eef5ed;
   border-radius: 8px;
   
