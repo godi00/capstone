@@ -109,63 +109,92 @@ export const DetailPage = (props) => {
         )
     }
 
+    // 유사 게시글 배열 생성
     const FindSimilarContent = async () => {
-        // 비교하려는 카테고리의 게시글 배열 가져오기
-        const QuerySnapshot = await getDocs(query(collection(db, props.cg), orderBy("uploadTime", "desc")));
-        const data = QuerySnapshot.docs.map((doc, i) => ({
-            ...doc.data()
+        try {
+            // 비교하려는 카테고리의 게시글 배열 가져오기
+            const category = (props.cg === "Missing" ? "Finding" : "Missing");
+
+            const QuerySnapshot = await getDocs(
+                query(collection(db, category), orderBy("uploadTime", "desc"))
+            );
+            const data = QuerySnapshot.docs.map((doc) => doc.data());
+      
+            // 게시글 개수 크기의 배열 생성 및 초기화
+            const numArr = Array.from({ length: data.length }, () => 0);
+      
+            // 게시글 순서대로 각 조건들 비교
+            // 비교해서 같으면 count 증가
+            // farColor1, farColor2, address, age, date, gender, specify
+            data.forEach((d, i) => {
+                if (profiles[0].farColor1 === d.farColor1) numArr[i] += 1; // 모색1
+                if (profiles[0].farColor2 === d.farColor2) numArr[i] += 1; // 모색2
+                if (profiles[0].address === d.address) numArr[i] += 1; // 주소
+                if (profiles[0].age === d.age) numArr[i] += 1; // 나이
+                if (profiles[0].date === d.date) numArr[i] += 1; // 날짜
+                if (profiles[0].gender === d.gender) numArr[i] += 1; // 성별
+                if (profiles[0].specify === d.specify) numArr[i] += 1; // 품종
+            });
+      
+            // count가 3 이상인 게시글만 인덱스 도출
+            const resultArr = [];
+            let count = 0;
+            numArr.forEach((d, i) => {
+                if (numArr[i] > 3) {
+                // 해당 게시글 id 배열 생성
+                resultArr[count] = data[i].id;
+                count = count + 1;
+                }
+            });
+
+            const matchingArr = resultArr.map((id) => {
+                // resultArr 배열에 있는 id와 일치하는 데이터를 찾아서 반환
+                const matchingDoc = QuerySnapshot.docs.find((doc) => doc.data().id === id);
+                
+                // matchingDoc가 undefined가 아니면 해당 데이터 반환, 아니면 null 반환
+                return matchingDoc ? matchingDoc.data() : null;
+            });
+            // console.log(matchingArr);
+      
+            return matchingArr;
+        } catch (error) {
+            console.error('Error in FindSimilarContent:', error);
+            return []; // 오류 발생 시 빈 배열 반환
         }
-        ));
+    };
+      
+    const SimilarContent = () => {
+        const [contentArr, setContentArr] = useState([]); // 비동기 결과를 저장할 상태
+      
+        useEffect(() => {
+          const fetchData = async () => {
+            try {
+              // 조건 7개 중 3개 이상 일치하는 게시물 도출
+              const result = await FindSimilarContent();
+              setContentArr(result);
+            //   console.log(result);
+            } catch (error) {
+              console.error('Error in SimilarContent:', error);
+            }
+          };
+      
+          // 비동기 데이터 가져오기
+          fetchData();
+        }, []);
 
-        // 게시글 개수 크기의 배열 생성 및 초기화
-        const numArr = Array.from({length: data.length}, () => 0);
-
-        // 게시글 순서대로 각 조건들 비교
-        // 비교해서 같으면 count 증가
-        // farColor1, farColor2, address, age, date, gender, specify
-        data.map(function(d, i) {
-            // console.log(profiles[0]);
-            if(profiles[0].farColor1 === d.farColor1) numArr[i] += 1; // 모색1
-            if(profiles[0].farColor2 === d.address) numArr[i] += 1; // 모색2
-            if(profiles[0].address === d.farColor1) numArr[i] += 1; // 주소
-            if(profiles[0].age === d.age) numArr[i] += 1; // 나이
-            if(profiles[0].date === d.date) numArr[i] += 1; // 날짜
-            if(profiles[0].gender === d.gender) numArr[i] += 1; // 성별
-            if(profiles[0].specify === d.specify) numArr[i] += 1; // 품종
-        })
-        // console.log(numArr);
-
-        // count가 3 이상인 게시글만 인덱스 도출
-        // 문제: 처음 찾은 하나만 리턴함 다른 방법 찾기
-        const resultArr = numArr.findIndex(n => n > 2);
-        console.log(resultArr);
-
-        // 해당 게시글로만 배열 생성
-
-        // 배열 return
-    }
-
-    // 유사한 게시글
-    // cg == Missing : 실종 게시글에서 목격 게시글 비교
-    // cg == Finding : 목격 게시글에서 실종 게시글 비교
-    const SimilarContent = (cg) => {
-        // 조건 7개 중 3개 이상 일치하는 게시물 도출
-        // Missing
-        FindSimilarContent();
-        // Slider에 띄우기
-
-        // Finding
-
+        const category = (props.cg === "Missing" ? "Finding" : "Missing");
+      
         return (
-            <>
+          <>
             <div className="sc-div">
+                <h3>목격 게시판에 비슷한 강아지가 있어요.</h3>
                 <Slider {...settings}>
-                    {/* {Array.from(postdata).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={division.current}/>)} */}
+                    {Array.from(contentArr).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={category}/>)}
                 </Slider>
             </div>
-            </>
-        )
-    }
+          </>
+        );
+    };
 
     // useEffect
     useEffect(() => {
