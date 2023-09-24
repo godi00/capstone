@@ -30,26 +30,26 @@ const UploadPage = () => {
 
 
 
-    function wait(sec) {
-        let start = Date.now(), now = start;
-        while (now - start < sec * 1000) {
-            now = Date.now();
-        }
-    }
+    // function wait(sec) {
+    //     let start = Date.now(), now = start;
+    //     while (now - start < sec * 1000) {
+    //         now = Date.now();
+    //     }
+    // }
 
 
-    useEffect(()=>{
-    const uploadFile= async(file, i) => {
-            const storageRef = ref(storage, file.name);
-            await uploadBytes(storageRef, file).then(async(snapshot) => {
-                await getDownloadURL(snapshot.ref).then((url) => {
-                    Imgs[i] = url;
-                    console.log(url);
-                });
-            });
-        };
-        files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
-    }, [files]);
+    // useEffect(()=>{
+    // const uploadFile= async(file, i) => {
+    //         const storageRef = ref(storage, file.name);
+    //         await uploadBytes(storageRef, file).then(async(snapshot) => {
+    //             await getDownloadURL(snapshot.ref).then((url) => {
+    //                 Imgs[i] = url;
+    //                 console.log(url);
+    //             });
+    //         });
+    //     };
+    //     files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
+    // }, [files]);
 
     // const fileUpload = ()=>{
     //     const uploadFile= (file, i) => {
@@ -86,13 +86,13 @@ const UploadPage = () => {
         //fileUpload();
         //wait(5);
 
-        if(Imgs[files.length-1] == null){
-            //console.log(files.length-1);
-            while(Imgs[files.length-1] == null){
-                console.log(Imgs);
-                wait(1);
-            }
-        }
+        // if(Imgs[files.length-1] == null){
+        //     //console.log(files.length-1);
+        //     while(Imgs[files.length-1] == null){
+        //         console.log(Imgs);
+        //         wait(1);
+        //     }
+        // }
         
         uploadfunc();
         
@@ -103,28 +103,50 @@ const UploadPage = () => {
 
 
     const uploadfunc = async() =>{
-        const currUser = auth.currentUser.uid;
-        
-        var time = new Date();
-        const docRef = await addDoc(collection(db, "Missing"), {
+        const uploadPromises = Array.from(files).map((file) => {
+            return new Promise((resolve) => {
+                const storageRef = ref(storage, file.name);
+                uploadBytesResumable(storageRef, file)
+                    .then((snapshot) => getDownloadURL(snapshot.ref))
+                    .then((url) => {
+                        resolve(url);
+                    });
+            });
+        });
+
+        try {
+            const uploadedUrls = await Promise.all(uploadPromises);
+            Imgs.push(...uploadedUrls);
+            console.log("Imgs:", Imgs);
+
+            var currUser = auth.currentUser.uid;
+            // ... 나머지 코드 ...
+            submit = true; // 이제 submit을 허용
+        } catch (error) {
+            console.error("이미지 업로드 중 오류 발생:", error);
+        }
+
+
+        var currUser = auth.currentUser.uid;
+
+        var time = new Date()
+        const docRef = await addDoc(collection(db, "Missing"), {    //해당게시글 정보를 finding컬렉션에 추가
             ...data,
             imgs: Imgs, 
             uploadTime: time,
             visibled: true,
             uid: currUser
         });
-        await updateDoc(docRef, {id: docRef.id});   //현재 문서의 id를 필드에 다시 추가
+        await updateDoc(docRef, {id: docRef.id}); 
         
-        
-        let document = await getDoc(doc(db, "Users", currUser));
-        var arr = document.data().missing;
 
+        let document = await getDoc(doc(db, "Users", currUser));    //user컬렉션에 해당user가 등록한 게시글 추가
+        var arr = document.data().finding;
         if(arr != null){
             await updateDoc(doc(db, "Users", currUser), {
                 missing: [...arr, docRef.id]
             });
-        }
-        else{
+        }else{
             await updateDoc(doc(db, "Users", currUser), {
                 missing: [docRef.id]
             });

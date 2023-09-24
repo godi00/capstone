@@ -2,17 +2,15 @@
  * ./src/components/page/miss/UploadPage.js
  * 실종 등록하기
  */
-//import "./UploadPage.scss";
+import "../../../style/UploadPage.scss";
 import userInputs from "../../../data/formData.js";
 import { React, useState, useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
 import { addDoc, collection, updateDoc, doc, getDoc } from "@firebase/firestore";
-import { db, storage } from "../../../firebase.js";
-import { getAuth } from "firebase/auth";
+import { db, storage, auth } from "../../../firebase.js";
 import { ref, uploadBytesResumable, uploadBytes, getDownloadURL } from "firebase/storage";
-import "../../../style/UploadPage.scss";
-//import Dropzone from 'react-dropzone'
+
 
 
 
@@ -20,34 +18,40 @@ const FindUploadPage = () => {
 
     const [data, setData] = useState({});
     const [files, setFiles] = useState([]);
-    const Imgs = Array.from(files);
+    const Imgs = Array.from([]);
     const [address, setAddress] = useState("");
     const [popup, setPopup] = useState(false);
 
     const Navigate = useNavigate();
-    const auth = getAuth();
     var submit = true;
 
-    function wait(sec) {
-        let start = Date.now(), now = start;
-        while (now - start < sec * 1000) {
-            now = Date.now();
-        }
-    }
 
 
-    useEffect(()=>{
-        const uploadFile= (file, i) => {
-            const storageRef = ref(storage, file.name);
-            uploadBytes(storageRef, file).then((snapshot) => {
-                getDownloadURL(snapshot.ref).then((url) => {
-                    Imgs[i] = url;
-                    console.log(url);
-                });
-            });
-        };
-        files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
-    }, [files]);
+    // useEffect(() => {
+	// 	setDateAttr();
+	// }, []);
+
+    // function wait(sec) {
+    //     let start = Date.now(), now = start;
+    //     while (now - start < sec * 1000) {
+    //         now = Date.now();
+    //     }
+    // }
+
+
+    // useEffect(()=>{
+    //     const uploadFile= (file, i) => {
+    //         const storageRef = ref(storage, file.name);
+    //         uploadBytes(storageRef, file).then((snapshot) => {
+    //             getDownloadURL(snapshot.ref).then((url) => {
+    //                 Imgs[i] = url;
+    //                 console.log(Imgs);
+    //                 console.log(url);
+    //             });
+    //         });
+    //     };
+    //     files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
+    // }, [files]);
     
 
 
@@ -57,7 +61,6 @@ const FindUploadPage = () => {
         const id = e.target.id;
         const value = e.target.value;
         setData({ ...data, [id]: value });
-
     };
 
 
@@ -72,17 +75,42 @@ const FindUploadPage = () => {
         }
         submit = false;
 
+        //console.log("Imgs:", Imgs);
 
-        if(Imgs[files.length-1] == null){
-            console.log(files.length-1);
-            while(Imgs[files.length-1] == null)
-                wait(1);
+        // if(Imgs[files.length-1] == null){
+        //     console.log(files.length-1);
+        //     while(Imgs[files.length-1] == null)
+        //         wait(1);
+        // }
+
+        const uploadPromises = Array.from(files).map((file) => {
+            return new Promise((resolve) => {
+                const storageRef = ref(storage, file.name);
+                uploadBytesResumable(storageRef, file)
+                    .then((snapshot) => getDownloadURL(snapshot.ref))
+                    .then((url) => {
+                        resolve(url);
+                    });
+            });
+        });
+
+        try {
+            const uploadedUrls = await Promise.all(uploadPromises);
+            Imgs.push(...uploadedUrls);
+            console.log("Imgs:", Imgs);
+
+            var currUser = auth.currentUser.uid;
+            // ... 나머지 코드 ...
+            submit = true; // 이제 submit을 허용
+        } catch (error) {
+            console.error("이미지 업로드 중 오류 발생:", error);
         }
+
 
         var currUser = auth.currentUser.uid;
 
         var time = new Date()
-        const docRef = await addDoc(collection(db, "Finding"), {
+        const docRef = await addDoc(collection(db, "Finding"), {    //해당게시글 정보를 finding컬렉션에 추가
             ...data,
             imgs: Imgs, 
             uploadTime: time,
@@ -90,18 +118,15 @@ const FindUploadPage = () => {
             uid: currUser
         });
         await updateDoc(docRef, {id: docRef.id}); 
+        
 
-        
-        
-        let document = await getDoc(doc(db, "Users", currUser));
+        let document = await getDoc(doc(db, "Users", currUser));    //user컬렉션에 해당user가 등록한 게시글 추가
         var arr = document.data().finding;
-
         if(arr != null){
             await updateDoc(doc(db, "Users", currUser), {
                 finding: [...arr, docRef.id]
             });
-        }
-        else{
+        }else{
             await updateDoc(doc(db, "Users", currUser), {
                 finding: [docRef.id]
             });
@@ -129,6 +154,18 @@ const FindUploadPage = () => {
         setAddress(data.address);
         setData((prev)=>({...prev, address:data.address}));
     }
+
+
+
+    //날짜선택 시 오늘 이후날짜 선택못하도록 제한하는 함수
+    const setDateAttr = () => {
+        // let dateElement = document.getElementById('date');
+        // let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
+        // //dateElement.value = date;
+        // dateElement.setAttribute("max", date);
+    }
+
+
 
     const postCodeStyle = {
         display: "block",
@@ -221,7 +258,7 @@ const FindUploadPage = () => {
                         };
                     </script> */}
                     </div>
-                <button className="submit-btn" type="submit">등록하기</button>
+                <button className="submit-btn" type="submit" disabled={()=>{files.length!=0? true:false}}>등록하기</button>
             </form>
             </div>
             </div>
