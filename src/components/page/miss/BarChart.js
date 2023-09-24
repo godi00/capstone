@@ -23,7 +23,7 @@ export const BarChart = (props) => {
             else if (region === "경기") initialData = locationData.filter((location) => location.name.endsWith("시"));
             
             const initialDistrictData = initialData.map((location) => ({ quarter: location.name, earnings: 0 }));
-            setDistrict(initialDistrictData);
+            //setDistrict(initialDistrictData);
 
             // 카테고리의 전체 문서를 가져옴
             const QuerySnapshot = await getDocs(query(collection(db, props.cg)));
@@ -44,11 +44,18 @@ export const BarChart = (props) => {
 
             // 업데이트된 district로 상태 업데이트
             setDistrict(updatedDistrict);
+            // console.log(region);
+            // console.log(district);
         };
 
         // fetch
         fetchData();
     }, [region]);
+
+    useEffect(() => {
+        console.log(region);
+        console.log(district);
+    }, [region, district]);
 
     return (
         <>
@@ -95,7 +102,7 @@ export const BarChart = (props) => {
                     x="quarter"
                     y="earnings"
 
-                    animate={{ duration: 800 }}
+                    animate={{ duration: 500 }}
 
                     style={{
                         data: { fill:"#376330" }
