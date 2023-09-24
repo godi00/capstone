@@ -81,8 +81,13 @@ class FindAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         viewHolder.findaddress.text = findlist[position].address//주소
         viewHolder.findcolor2.text = findlist[position].farColor2
         viewHolder.findfeature.text = findlist[position].feature
-        viewHolder.findtuploadime.text = findlist[position].date
-
+        if(findlist[position].date?.contains('T') == true){ //웹에서 데이터 넘어옴
+            val target = 'T'
+            findlist[position].date = findlist[position].date?.replace(target,'일')
+            viewHolder.findtuploadime.text = findlist[position].date
+        }else { //앱에서 만든 데이터
+            viewHolder.findtuploadime.text = findlist[position].date
+        }
         viewHolder.viewbutton2.setOnClickListener {
             Log.e("kimshinseung", "success") // 검사
             if (findlist[position].visibled == true) { //visible필드가 true이면 상세 게시물로 이동한다.
