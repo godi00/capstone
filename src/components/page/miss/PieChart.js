@@ -48,7 +48,7 @@ export const PieChart = (props) => {
 
     return (
         <>
-            <svg width={400} height={511} >
+            <svg width={400} height={378.6} >
 
                 {/* #93c58c | #69a65f | #376330 */}
 

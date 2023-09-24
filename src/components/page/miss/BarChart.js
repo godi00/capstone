@@ -60,7 +60,7 @@ export const BarChart = (props) => {
     return (
         <>
             
-            <select onChange={(e) => { setRegion(e.target.value) }} style={{ float: "right", marginRight: 10 + 'em' }}>
+            <select onChange={(e) => { setRegion(e.target.value) }} style={{ width: 90, height:30, float: "right", marginRight: 3 + 'em' }}>
                 <option selected value="서울">서울</option>
                 <option value="경기">경기</option>
             </select>
@@ -70,7 +70,7 @@ export const BarChart = (props) => {
                     padding={33}
                     domainPadding={{ x: 10 }}
                     width={800}
-                    height={300}
+                    height={280}
                     style={{
                         background: { fill: '#eef5ed' }
                     }}

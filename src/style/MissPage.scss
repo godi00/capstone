@@ -66,13 +66,15 @@
     
 
     .miss-pie {
-        width: 23%;
-        height: 30%;
+        width: 25%;
+        height: 20%;
         float: right;
+        //margin-right: 1px;
         background-color: #eef5ed;
         border-radius: 0px 10px 10px 0px;
 
         .miss-pie-p1 {
+            margin-right: 15px;
             padding-top: 5%;
             color: #376330;
         }
@@ -80,7 +82,7 @@
 
     .miss-bar {
         padding-top: 2%;
-        width: 77%;
+        width: 75%;
         height: 30%;
         float: left;
         background-color: #eef5ed;

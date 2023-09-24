@@ -90,7 +90,7 @@ const UploadPage = () => {
         
 
         let document = await getDoc(doc(db, "Users", currUser));    //user컬렉션에 해당user가 등록한 게시글 추가
-        var arr = document.data().finding;
+        var arr = document.data().missing;
         if(arr != null){
             await updateDoc(doc(db, "Users", currUser), {
                 missing: [...arr, docRef.id]
