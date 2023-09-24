@@ -191,7 +191,7 @@ export function SearchPage() {
             <h2>검색 결과</h2>
             <div className="postObj">
                 <Slider {...settings}>
-                    {Array.from(postdata).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={division.current}/>)}
+                    {Array.from(postdata).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={division.current} isDetail={false}/>)}
                 </Slider>
             </div>
             <br/><br/>
