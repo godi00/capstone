@@ -70,7 +70,6 @@ const UploadPage = () => {
             console.log("Imgs:", Imgs);
 
             var currUser = auth.currentUser.uid;
-            // ... 나머지 코드 ...
             submit = true; // 이제 submit을 허용
         } catch (error) {
             console.error("이미지 업로드 중 오류 발생:", error);
@@ -128,7 +127,6 @@ const UploadPage = () => {
         console.log(dateElement);
         let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
         console.log(date);
-        //dateElement.value = date;
         dateElement.setAttribute("max", date);
     }
 

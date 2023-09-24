@@ -4,14 +4,14 @@
  */
 
 .find {
-    margin-right:0.2%;
-    margin-bottom:-1%;
-    margin-top:-2px;
     display: flex;
     position: relative;
     align-items: center;
-    justify-content: row;
+    
     justify-content: space-between;
+
+    margin-right:0.2%;
+    margin-bottom:-1%;
 
     .find-page-upload-btn {
         width: 150px;
@@ -61,7 +61,7 @@
 
     .find-pie {
         width: 23%;
-        height: 30;
+        height: 30%;
         float: right;
         background-color: #eef5ed;
         border-radius: 0px 10px 10px 0px;
@@ -73,6 +73,7 @@
     }
 
     .find-bar {
+        padding-top: 2%;
         width: 77%;
         height: 30%;
         float: left;

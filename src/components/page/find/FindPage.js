@@ -47,13 +47,14 @@ export const FindPage = () => {
                 <Carousel category={"Finding"} cg={"Finding"}/>
                 
                 <div className="findpage-chart">
-                    <div className="find-pie">
-                        <span className="find-pie-p1">《 가족의 품으로 돌아간 반려견의 비율이 얼마나 될까요? 》</span>
-                        <PieChart className="find-pie-chart" cg="Finding" />
-                    </div>
+                    
                     <div className="find-bar">
-                        <p className="find-bar-p1">《 각 자치구 마다 목격된 반려견이 얼마나 있을까요? 》</p>
+                        <span className="find-bar-p1">《 각 지역 마다 목격된 반려견이 얼마나 있을까요? 》</span>
                         <BarChart className="find-bar-chart" cg="Finding" />
+                    </div>
+                    <div className="find-pie">
+                        <p className="find-pie-p1">《 가족의 품으로 돌아간 반려견의 비율이 얼마나 될까요? 》</p>
+                        <PieChart className="find-pie-chart" cg="Finding" />
                     </div>
                 </div>
                 

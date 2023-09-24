@@ -25,35 +25,9 @@ const FindUploadPage = () => {
     const Navigate = useNavigate();
     var submit = true;
 
-
-
-    // useEffect(() => {
-	// 	setDateAttr();
-	// }, []);
-
-    // function wait(sec) {
-    //     let start = Date.now(), now = start;
-    //     while (now - start < sec * 1000) {
-    //         now = Date.now();
-    //     }
-    // }
-
-
-    // useEffect(()=>{
-    //     const uploadFile= (file, i) => {
-    //         const storageRef = ref(storage, file.name);
-    //         uploadBytes(storageRef, file).then((snapshot) => {
-    //             getDownloadURL(snapshot.ref).then((url) => {
-    //                 Imgs[i] = url;
-    //                 console.log(Imgs);
-    //                 console.log(url);
-    //             });
-    //         });
-    //     };
-    //     files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
-    // }, [files]);
-    
-
+    useEffect(() => {
+		setDateAttr();
+	}, []);
 
 
 
@@ -101,7 +75,6 @@ const FindUploadPage = () => {
             console.log("Imgs:", Imgs);
 
             var currUser = auth.currentUser.uid;
-            // ... 나머지 코드 ...
             submit = true; // 이제 submit을 허용
         } catch (error) {
             console.error("이미지 업로드 중 오류 발생:", error);
@@ -157,10 +130,10 @@ const FindUploadPage = () => {
 
     //날짜선택 시 오늘 이후날짜 선택못하도록 제한하는 함수
     const setDateAttr = () => {
-        // let dateElement = document.getElementById('date');
-        // let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
-        // //dateElement.value = date;
-        // dateElement.setAttribute("max", date);
+        let dateElement = document.getElementById('date');
+        let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
+        console.log(data);
+        dateElement.setAttribute("max", date);
     }
 
 
