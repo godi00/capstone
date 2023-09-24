@@ -53,7 +53,7 @@ export const FindPage = () => {
                         <BarChart className="find-bar-chart" cg="Finding" />
                     </div>
                     <div className="find-pie">
-                        <p className="find-pie-p1">《 가족의 품으로 돌아간 반려견의 비율이 얼마나 될까요? 》</p>
+                        <p className="find-pie-p1">《 찾은 반려견의 비율이 얼마나 될까요? 》</p>
                         <PieChart className="find-pie-chart" cg="Finding" />
                     </div>
                 </div>

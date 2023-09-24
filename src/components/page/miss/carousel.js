@@ -74,7 +74,7 @@ const Carousel = (category) => {
   return (
     <div className="carousel">
       <Slider {...settings}>
-        {Array.from(profiles).slice(0, 12).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={category.cg}/>)}
+        {Array.from(profiles).slice(0, 12).map((item, i) => <Card profiles={item} i={i+1} key={item.id} cg={category.cg} isDetail={false}/>)}
       </Slider>
     </div>
   );
