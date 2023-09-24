@@ -194,11 +194,15 @@ export const DetailPage = (props) => {
         return (
           <>
             <div className="sc-div">
-                {contentArr && contentArr.length > 0 && (
+                {contentArr && contentArr.length > 0 ? (
                     <>
                     <Slider {...settings}>
                         {Array.from(contentArr).map((item, i) => <Card className='detail-card' profiles={item} i={i+1} key={item.id} cg={category} isDetail={true}/>)}
                     </Slider>
+                    </>
+                ) : (
+                    <>
+                    <h3>아직 유사한 게시글이 올라오지 않았습니다.</h3>
                     </>
                 )}
             </div>
@@ -284,12 +288,12 @@ export const DetailPage = (props) => {
                             <div className="upload-date">
                                 <p>업로드 날짜: {profiles[0].uploadTime.toDate().toLocaleDateString()} / {profiles[0].uploadTime.toDate().toLocaleTimeString()}</p>
                             </div>
-                            <UploaderInfo />
+                            <UploaderInfo className='uploader-info' />
                             {(currUser != null) && (currUser.uid == profiles[0].uid) && <button className="found-btn" onClick={handleVisible}>찾았어요</button>}
                         </>
                     ) : (
                         <>
-                            <SimilarContent className='sc-content' />
+                            <SimilarContent />
                         </>
                     )}
                 </div>

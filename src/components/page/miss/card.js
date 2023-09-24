@@ -95,8 +95,8 @@ const ItemStyle2 = styled.div`
   width: 90%;
   max-width: 400px;
   height: 400px;
-  padding-top: 2px;
-  padding-bottom: 5px;
+  padding-top: 15px;
+  padding-bottom: 20px;
   margin: 1% auto;
   background-color: #eef5ed;
   border-radius: 8px;
