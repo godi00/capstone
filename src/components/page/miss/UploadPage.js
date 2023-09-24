@@ -10,7 +10,7 @@ import DaumPostcode from "react-daum-postcode";
 import { addDoc, collection, doc, updateDoc, getDoc } from "@firebase/firestore";
 import { db, storage, auth } from "../../../firebase.js";
 import { ref, uploadBytesResumable, uploadBytes, getDownloadURL } from "firebase/storage";
-//import Dropzone from 'react-dropzone'
+
 
 const UploadPage = () => {
     const [data, setData] = useState({});
@@ -50,6 +50,19 @@ const UploadPage = () => {
         };
         files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
     }, [files]);
+
+    // const fileUpload = ()=>{
+    //     const uploadFile= (file, i) => {
+    //         const storageRef = ref(storage, file.name);
+    //         uploadBytes(storageRef, file).then((snapshot) => {
+    //             getDownloadURL(snapshot.ref).then((url) => {
+    //                 Imgs[i] = url;
+    //                 console.log(url);
+    //             });
+    //         });
+    //     };
+    //     files && Array.from(files).map((file, i) => (uploadFile(file, i))); //유사배열객체라서 map함수 쓰기위해 Array.from함수 사용
+    // }
         
 
 
@@ -59,7 +72,7 @@ const UploadPage = () => {
         setData({ ...data, [id]: value });
     };
 
-    const handler = async(e) =>{
+    const handler = (e) =>{
         e.preventDefault();
 
         if(!submit) return 0;
@@ -70,12 +83,26 @@ const UploadPage = () => {
         }
         submit = false;
 
+        //fileUpload();
+        //wait(5);
+
         if(Imgs[files.length-1] == null){
-            console.log(files.length-1);
-            while(Imgs[files.length-1] == null)
+            //console.log(files.length-1);
+            while(Imgs[files.length-1] == null){
+                console.log(Imgs);
                 wait(1);
+            }
         }
         
+        uploadfunc();
+        
+        alert("등록되었습니다.");
+        Navigate("/miss");
+        //location.reload();
+    }
+
+
+    const uploadfunc = async() =>{
         const currUser = auth.currentUser.uid;
         
         var time = new Date();
@@ -102,10 +129,6 @@ const UploadPage = () => {
                 missing: [docRef.id]
             });
         }
-        
-        alert("등록되었습니다.");
-        Navigate("/miss");
-        //location.reload();
     }
 
 
@@ -130,7 +153,9 @@ const UploadPage = () => {
     //날짜선택 시 오늘 이후날짜 선택못하도록 제한하는 함수
     const setDateAttr = () => {
         let dateElement = document.getElementById('date');
+        console.log(dateElement);
         let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
+        console.log(date);
         //dateElement.value = date;
         dateElement.setAttribute("max", date);
     }

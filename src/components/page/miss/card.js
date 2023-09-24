@@ -52,7 +52,7 @@ function Card(props) {
 // 카드 style component
 const ItemStyle = styled.div`
   width: 95%;
-  max-width: 350px;
+  max-width: 400px;
   height: 470px;
   padding-top: 20px;
   padding-bottom: 5px;
