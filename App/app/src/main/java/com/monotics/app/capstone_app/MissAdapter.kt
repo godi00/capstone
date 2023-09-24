@@ -79,7 +79,13 @@ class MissAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         viewHolder.missname.text = misslist[position].name
         viewHolder.missaddress.text = misslist[position].address//주소
-        viewHolder.misstime.text = misslist[position].date
+        if(misslist[position].date?.contains('T') == true){ //웹에서 데이터 넘어옴
+            val target = 'T'
+            misslist[position].date = misslist[position].date?.replace(target,'일')
+            viewHolder.misstime.text = misslist[position].date
+        }else { //앱에서 만든 데이터
+            viewHolder.misstime.text = misslist[position].date
+        }
         viewHolder.missspecify.text = misslist[position].specify
         viewHolder.misskakaoid.text = misslist[position].kakaoId
         viewHolder.missfeature.text = misslist[position].feature
