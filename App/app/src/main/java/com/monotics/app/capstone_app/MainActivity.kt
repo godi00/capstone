@@ -142,7 +142,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             profileDataViewModel.address.observeForever {
                 val textView: TextView = findViewById(R.id.address)
-                textView.text= "   "+it
+                if(it[0]=='{'){ //웹계정
+                    val add = it.split("address=")
+                    val extra = add[1]
+                    val extra1 = extra.split("extra")
+                    val extra2 = extra1[0].split(')')
+
+                    Log.e("kimshinss",extra2[0].toString())
+                    textView.text ="   "+ extra2[0]+")"
+                }else{ //모바일계정
+                    textView.text= "   "+it
+                }
             }
             profileDataViewModel.email.observeForever {
                 val textView: TextView = findViewById(R.id.email)
@@ -151,6 +161,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             profileDataViewModel.phoneNumber.observeForever {
                 val textView: TextView = findViewById(R.id.phone)
                 textView.text= "   "+it
+                Log.e("kimshinss",it.toString())
             }
 
             binding.layoutDrawer.openDrawer(GravityCompat.START)
