@@ -1,9 +1,13 @@
 package com.monotics.app.capstone_app
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 
@@ -22,6 +26,13 @@ class ViewPagerAdapter(
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         holder.imageMember.setImageResource(imageMembers[position])
+        if(position == 1){
+            holder.imageMember.setOnClickListener {
+                val intent = Intent(holder.imageMember.context, FindEnrollActivity::class.java)
+                ContextCompat.startActivity(holder.imageMember.context,intent,null)
+            }
+        }
+
     }
 
     override fun getItemCount(): Int = imageMembers.size

@@ -147,8 +147,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val extra = add[1]
                     val extra1 = extra.split("extra")
                     val extra2 = extra1[0].split(')')
-
-                    Log.e("kimshinss",extra2[0].toString())
+                    //웹 계정일 경우 양식을 맞춤
                     textView.text ="   "+ extra2[0]+")"
                 }else{ //모바일계정
                     textView.text= "   "+it
@@ -161,7 +160,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             profileDataViewModel.phoneNumber.observeForever {
                 val textView: TextView = findViewById(R.id.phone)
                 textView.text= "   "+it
-                Log.e("kimshinss",it.toString())
             }
 
             binding.layoutDrawer.openDrawer(GravityCompat.START)
